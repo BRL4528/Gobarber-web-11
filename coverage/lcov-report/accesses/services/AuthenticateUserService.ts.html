@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for users/services/AuthenticateUserService.ts</title>
+    <title>Code coverage report for accesses/services/AuthenticateUserService.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">users/services</a> AuthenticateUserService.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">accesses/services</a> AuthenticateUserService.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -178,59 +178,59 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
 <span class="cstat-no" title="statement not covered" >import authConfig from '@config/auth';</span>
-import IUsersRepository from '../repositories/IUsersRepository';
+import IAccessesRepository from '../repositories/IAccessesRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 &nbsp;
-import User from '../infra/typeorm/entities/User';
+import Access from '../infra/typeorm/entities/Access';
 &nbsp;
 interface IRequest {
-  email: string;
+  nickname: string;
   password: string;
 }
 &nbsp;
 interface IResponse {
-  user: User;
+  access: Access;
   token: string;
 }
 &nbsp;
 @injectable()
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >class <span class="cstat-no" title="statement not covered" >A</span></span>uthenticateUserService {</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >class <span class="cstat-no" title="statement not covered" >A</span></span>uthenticateAccessService {</span>
 <span class="fstat-no" title="function not covered" >  constructor(</span>
-    @inject('UsersRepository')
-    private <span class="cstat-no" title="statement not covered" >usersRepository: IUsersRepository,</span>
+    @inject('AccessesRepository')
+    private <span class="cstat-no" title="statement not covered" >accessesRepository: IAccessesRepository,</span>
 &nbsp;
     @inject('HashProvider')
     private <span class="cstat-no" title="statement not covered" >hashProvider: IHashProvider,</span>
   ) {}
 &nbsp;
-<span class="fstat-no" title="function not covered" >  public async <span class="cstat-no" title="statement not covered" >e</span>xecute({ email<span class="cstat-no" title="statement not covered" >, p</span>assword<span class="cstat-no" title="statement not covered" > }: IRequest)</span>: Promise&lt;IResponse&gt; {</span>
-    const <span class="cstat-no" title="statement not covered" >user = <span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >await this.usersRepository.findByEmail(email);</span></span></span>
+<span class="fstat-no" title="function not covered" >  public async <span class="cstat-no" title="statement not covered" >e</span>xecute({ nickname<span class="cstat-no" title="statement not covered" >, p</span>assword<span class="cstat-no" title="statement not covered" > }: IRequest)</span>: Promise&lt;IResponse&gt; {</span>
+    const <span class="cstat-no" title="statement not covered" >access = <span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >await this.accessesRepository.findByNickname(nickname);</span></span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError('Incorrect email/password combination.', 401);</span>
+<span class="cstat-no" title="statement not covered" >    if (!access) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError('Incorrect nickname/password combination.', 401);</span>
     }
 &nbsp;
     const <span class="cstat-no" title="statement not covered" >passwordMatched = <span class="cstat-no" title="statement not covered" >await this.hashProvider.compareHash(</span></span>
       password,
-      user.password,
+      access.password,
     );
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!passwordMatched) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError('Incorrect email/password combination.', 401);</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError('Incorrect nickname/password combination.', 401);</span>
     }
 &nbsp;
     const <span class="cstat-no" title="statement not covered" >{ secret, expiresIn } = a</span>uthConfig.jwt;
 &nbsp;
     const <span class="cstat-no" title="statement not covered" >token = sign({}, secret, {</span>
-      subject: user.id,
+      subject: access.id,
       expiresIn,
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return { user, token };</span>
+<span class="cstat-no" title="statement not covered" >    return { access, token };</span>
   }
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default AuthenticateUserService;</span>
+<span class="cstat-no" title="statement not covered" >export default AuthenticateAccessService;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
