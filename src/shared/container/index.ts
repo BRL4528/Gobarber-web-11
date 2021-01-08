@@ -1,23 +1,16 @@
 import { container } from 'tsyringe';
 
-// import '@modules/users/providers';
 import '@modules/accesses/providers';
 import './providers';
-
-// import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
-// import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
-
-// import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-// import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import IAccessTokensRepository from '@modules/accesses/repositories/IAccessTokensRepository';
 import AccessTokensRepository from '@modules/accesses/infra/typeorm/repositories/AccessTokensRepository';
 
-// import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
-// import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
-
 import IAccessesRepository from '@modules/accesses/repositories/IAccessesRepository';
 import AccessesRepository from '@modules/accesses/infra/typeorm/repositories/AccessesRepository';
+
+import ISectorsRepository from '@modules/sectors/repositories/ISectorsRepository';
+import SectorsRepository from '@modules/sectors/infra/typeorm/repositories/SectorsRepository';
 
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
@@ -29,17 +22,7 @@ container.registerSingleton<IAccessTokensRepository>(
   AccessTokensRepository,
 );
 
-// container.registerSingleton<IAppointmentsRepository>(
-//   'AppointmentsRepository',
-//   AppointmentsRepository,
-// );
-
-// container.registerSingleton<IUsersRepository>(
-//   'UsersRepository',
-//   UsersRepository,
-// );
-
-// container.registerSingleton<INotificationsRepository>(
-//   'NotificationsRepository',
-//   NotificationsRepository,
-// );
+container.registerSingleton<ISectorsRepository>(
+  'SectorsRepository',
+  SectorsRepository,
+);
