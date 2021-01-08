@@ -15,6 +15,9 @@ import SectorsRepository from '@modules/sectors/infra/typeorm/repositories/Secto
 import IGoalsRepository from '@modules/goals/repositories/IGoalsRepository';
 import GoalsRepository from '@modules/goals/infra/typeorm/repositories/GoalsRepository';
 
+import ISubGoalsRepository from '@modules/sub_goals/repositories/ISubGoalsRepository';
+import SubGoalsRepository from '@modules/sub_goals/infra/typeorm/repositories/SubGoalsRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -33,4 +36,9 @@ container.registerSingleton<ISectorsRepository>(
 container.registerSingleton<IGoalsRepository>(
   'GoalsRepository',
   GoalsRepository,
+);
+
+container.registerSingleton<ISubGoalsRepository>(
+  'SubGoalsRepository',
+  SubGoalsRepository,
 );
