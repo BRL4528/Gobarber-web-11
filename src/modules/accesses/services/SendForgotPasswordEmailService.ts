@@ -1,8 +1,8 @@
 import { injectable, inject } from 'tsyringe';
-// import path from 'path';
+import path from 'path';
 
 import AppError from '@shared/errors/AppError';
-// import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IAccessesRepository from '../repositories/IAccessesRepository';
 import IAccessTokensRepository from '../repositories/IAccessTokensRepository';
 
@@ -16,11 +16,11 @@ class SendForgotPasswordEmailService {
     @inject('AccessesRepository')
     private accessesRepository: IAccessesRepository,
 
-    // @inject('MailProvider')
-    // private mailProvider: IMailProvider,
+    @inject('MailProvider')
+    private mailProvider: IMailProvider,
 
-    @inject('UserTokensRepository')
-    private userTokensRepository: IAccessTokensRepository,
+    @inject('AccessTokensRepository')
+    private accessTokensRepository: IAccessTokensRepository,
   ) {}
 
   public async execute({ nickname }: IRequest): Promise<void> {
@@ -30,29 +30,29 @@ class SendForgotPasswordEmailService {
       throw new AppError('User does not exists.');
     }
 
-    // const { token } = await this.userTokensRepository.generate(user.id);
+    const { token } = await this.accessTokensRepository.generate(access.id);
 
-    // const forgotPasswordTemplate = path.resolve(
-    //   __dirname,
-    //   '..',
-    //   'views',
-    //   'forgot_password.hbs',
-    // );
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgot_password.hbs',
+    );
 
-    // await this.mailProvider.sendMail({
-    //   to: {
-    //     name: user.name,
-    //     nickname: user.nickname,
-    //   },
-    //   subject: '[GoBarber] Recuperação de senha',
-    //   templateData: {
-    //     file: forgotPasswordTemplate,
-    //     variables: {
-    //       name: user.name,
-    //       link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`,
-    //     },
-    //   },
-    // });
+    await this.mailProvider.sendMail({
+      to: {
+        name: access.name,
+        email: 'access@nickname.com',
+      },
+      subject: '[GoBarber] Recuperação de senha',
+      templateData: {
+        file: forgotPasswordTemplate,
+        variables: {
+          name: access.name,
+          link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`,
+        },
+      },
+    });
   }
 }
 
