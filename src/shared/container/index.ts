@@ -12,6 +12,9 @@ import AccessesRepository from '@modules/accesses/infra/typeorm/repositories/Acc
 import ISectorsRepository from '@modules/sectors/repositories/ISectorsRepository';
 import SectorsRepository from '@modules/sectors/infra/typeorm/repositories/SectorsRepository';
 
+import IGoalsRepository from '@modules/goals/repositories/IGoalsRepository';
+import GoalsRepository from '@modules/goals/infra/typeorm/repositories/GoalsRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -25,4 +28,9 @@ container.registerSingleton<IAccessTokensRepository>(
 container.registerSingleton<ISectorsRepository>(
   'SectorsRepository',
   SectorsRepository,
+);
+
+container.registerSingleton<IGoalsRepository>(
+  'GoalsRepository',
+  GoalsRepository,
 );
