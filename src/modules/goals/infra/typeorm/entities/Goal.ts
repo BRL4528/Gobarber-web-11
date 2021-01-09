@@ -2,9 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
+import Sector from '@modules/sectors/infra/typeorm/entities/Sector';
 
 @Entity('goals')
 class Goal {
@@ -20,8 +26,15 @@ class Goal {
   @Column()
   weight: string;
 
-  // @Column()
-  // sub_goals: string;
+  @OneToMany(() => SubGoal, subGoal => subGoal.goals, { eager: true })
+  sub_goals: SubGoal[];
+
+  @ManyToOne(() => Sector, sector => sector.goals)
+  @JoinColumn({ name: 'sector_id' })
+  sector: Sector;
+
+  @Column()
+  sector_id: string;
 
   @CreateDateColumn()
   created_at: Date;

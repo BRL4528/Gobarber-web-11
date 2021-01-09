@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class AddGoalIdtoSectors1610074646495
+export default class AddGoalIdToSubGoals1610075294938
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'sectors',
+      'sub_goals',
       new TableColumn({
         name: 'goal_id',
         type: 'uuid',
@@ -18,9 +18,9 @@ export default class AddGoalIdtoSectors1610074646495
     );
 
     await queryRunner.createForeignKey(
-      'sectors',
+      'sub_goals',
       new TableForeignKey({
-        name: 'GoalsSector',
+        name: 'GoalSubGoals',
         columnNames: ['goal_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'goals',
@@ -31,8 +31,8 @@ export default class AddGoalIdtoSectors1610074646495
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('sectors', 'GoalsSector');
+    await queryRunner.dropForeignKey('sub_goals', 'GoalSubGoals');
 
-    await queryRunner.dropColumn('sectors', 'goal_id');
+    await queryRunner.dropColumn('sub_goals', 'goal_id');
   }
 }

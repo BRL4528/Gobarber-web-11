@@ -16,6 +16,7 @@ subGoalsRouter.post(
       name: Joi.string().required(),
       status: Joi.string().required(),
       weight: Joi.string().required(),
+      goals: Joi.array(),
     },
   }),
   subGoalsController.create,

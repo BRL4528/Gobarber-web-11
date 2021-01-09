@@ -1,15 +1,32 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import IGoalsRepository from '@modules/goals/repositories/IGoalsRepository';
 import ICreateGoalDTO from '@modules/goals/dtos/ICreateGoalDTO';
 
 import Goal from '@modules/goals/infra/typeorm/entities/Goal';
 
+interface IFindGoals {
+  id: string;
+}
+
 class GoalsRepository implements IGoalsRepository {
   private ormRepository: Repository<Goal>;
 
   constructor() {
     this.ormRepository = getRepository(Goal);
+  }
+
+  public async findAllById(goals: IFindGoals[]): Promise<Goal[]> {
+    console.log(goals);
+    const goalsIds = goals.map(goal => goal.id);
+
+    const existsGoals = await this.ormRepository.find({
+      where: {
+        id: In(goalsIds),
+      },
+    });
+
+    return existsGoals;
   }
 
   public async findById(id: string): Promise<Goal | undefined> {
@@ -26,8 +43,18 @@ class GoalsRepository implements IGoalsRepository {
     return goal;
   }
 
-  public async create(goalData: ICreateGoalDTO): Promise<Goal> {
-    const goal = this.ormRepository.create(goalData);
+  public async create({
+    // sub_goals,
+    name,
+    status,
+    weight,
+  }: ICreateGoalDTO): Promise<Goal> {
+    const goal = this.ormRepository.create({
+      name,
+      status,
+      weight,
+      // sub_goals,
+    });
 
     await this.ormRepository.save(goal);
 
