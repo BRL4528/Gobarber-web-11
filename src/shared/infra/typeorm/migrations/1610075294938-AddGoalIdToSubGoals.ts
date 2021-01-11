@@ -2,7 +2,7 @@ import {
   MigrationInterface,
   QueryRunner,
   TableColumn,
-  TableForeignKey,
+  // TableForeignKey,
 } from 'typeorm';
 
 export default class AddGoalIdToSubGoals1610075294938
@@ -11,28 +11,28 @@ export default class AddGoalIdToSubGoals1610075294938
     await queryRunner.addColumn(
       'sub_goals',
       new TableColumn({
-        name: 'goal_id',
-        type: 'uuid',
+        name: 'goal_ids',
+        type: 'varchar',
         isNullable: true,
       }),
     );
 
-    await queryRunner.createForeignKey(
-      'sub_goals',
-      new TableForeignKey({
-        name: 'GoalSubGoals',
-        columnNames: ['goal_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'goals',
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
+    // await queryRunner.createForeignKey(
+    //   'sub_goals',
+    //   new TableForeignKey({
+    //     name: 'GoalSubGoals',
+    //     columnNames: ['goal_id'],
+    //     referencedColumnNames: ['id'],
+    //     referencedTableName: 'goals',
+    //     onDelete: 'SET NULL',
+    //     onUpdate: 'CASCADE',
+    //   }),
+    // );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('sub_goals', 'GoalSubGoals');
+    // await queryRunner.dropForeignKey('sub_goals', 'GoalSubGoals');
 
-    await queryRunner.dropColumn('sub_goals', 'goal_id');
+    await queryRunner.dropColumn('sub_goals', 'goal_ids');
   }
 }

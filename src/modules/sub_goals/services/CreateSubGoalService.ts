@@ -7,14 +7,14 @@ import ISubGoalsRepository from '../repositories/ISubGoalsRepository';
 
 import SubGoal from '../infra/typeorm/entities/SubGoal';
 
-interface IGoal {
-  id: string;
-}
+// interface IGoal {
+//   id: string;
+// }
 interface IRequest {
   name: string;
   status: string;
   weight: string;
-  goals: IGoal[];
+  goals: string[];
 }
 
 @injectable()
@@ -39,7 +39,13 @@ class CreateSubGoalService {
       throw new AppError('Name already used.');
     }
 
-    const existentGoals = await this.goalsRepository.findAllById(goals);
+    const goalsIds = goals.map(goal => {
+      return {
+        id: goal,
+      };
+    });
+
+    const existentGoals = await this.goalsRepository.findAllById(goalsIds);
     console.log(existentGoals);
 
     if (!existentGoals) {
@@ -48,7 +54,7 @@ class CreateSubGoalService {
 
     const existentGoalsIds = existentGoals.map(goal => goal.id);
 
-    const checkInexistentGoals = goals.filter(
+    const checkInexistentGoals = goalsIds.filter(
       goal => !existentGoalsIds.includes(goal.id),
     );
 
@@ -60,7 +66,7 @@ class CreateSubGoalService {
       name,
       status,
       weight,
-      goals,
+      goals: existentGoalsIds,
     });
 
     return subGoal;

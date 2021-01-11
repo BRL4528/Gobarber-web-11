@@ -9,6 +9,8 @@ const goalsController = new GoalsController();
 
 const goalsRouter = Router();
 
+goalsRouter.get('/', goalsController.index);
+
 goalsRouter.post(
   '/',
   celebrate({

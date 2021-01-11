@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -26,8 +27,9 @@ class Goal {
   @Column()
   weight: string;
 
-  @OneToMany(() => SubGoal, subGoal => subGoal.goals, { eager: true })
-  sub_goals: SubGoal[];
+  // @OneToMany(() => SubGoal, subGoal => subGoal.goals, { eager: true })
+  // @JoinTable()
+  // sub_goals: SubGoal[];
 
   @ManyToOne(() => Sector, sector => sector.goals)
   @JoinColumn({ name: 'sector_id' })

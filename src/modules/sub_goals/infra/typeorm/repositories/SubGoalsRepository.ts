@@ -26,8 +26,18 @@ class SubGoalsRepository implements ISubGoalsRepository {
     return subGoal;
   }
 
-  public async create(subGoalData: ICreateSubGoalDTO): Promise<SubGoal> {
-    const subGoal = this.ormRepository.create(subGoalData);
+  public async create({
+    name,
+    status,
+    weight,
+    goals,
+  }: ICreateSubGoalDTO): Promise<SubGoal> {
+    const subGoal = this.ormRepository.create({
+      name,
+      status,
+      weight,
+      goal_ids: goals,
+    });
 
     await this.ormRepository.save(subGoal);
 
