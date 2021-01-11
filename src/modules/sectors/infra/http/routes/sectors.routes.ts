@@ -9,6 +9,8 @@ const sectorsController = new SectorsController();
 
 const sectorsRouter = Router();
 
+sectorsRouter.get('/', sectorsController.index);
+
 sectorsRouter.post(
   '/',
   celebrate({
@@ -19,5 +21,7 @@ sectorsRouter.post(
   }),
   sectorsController.create,
 );
+
+sectorsRouter.put('/', sectorsController.update);
 
 export default sectorsRouter;

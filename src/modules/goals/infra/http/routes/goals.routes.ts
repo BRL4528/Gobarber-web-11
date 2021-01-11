@@ -23,4 +23,6 @@ goalsRouter.post(
   goalsController.create,
 );
 
+goalsRouter.put('/', goalsController.update);
+
 export default goalsRouter;

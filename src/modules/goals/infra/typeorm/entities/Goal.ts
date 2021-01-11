@@ -2,16 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
-import Sector from '@modules/sectors/infra/typeorm/entities/Sector';
+// import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
+// import Sector from '@modules/sectors/infra/typeorm/entities/Sector';
 
 @Entity('goals')
 class Goal {
@@ -31,12 +27,12 @@ class Goal {
   // @JoinTable()
   // sub_goals: SubGoal[];
 
-  @ManyToOne(() => Sector, sector => sector.goals)
-  @JoinColumn({ name: 'sector_id' })
-  sector: Sector;
+  // @ManyToOne(() => Sector, sector => sector.goals)
+  // @JoinColumn({ name: 'sector_id' })
+  // sector: Sector;
 
-  @Column()
-  sector_id: string;
+  @Column('simple-array')
+  sector_ids: string[];
 
   @CreateDateColumn()
   created_at: Date;

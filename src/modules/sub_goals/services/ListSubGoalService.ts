@@ -17,7 +17,7 @@ class ListSubGoalService {
     const subGoals = await this.subGoalsRepository.findAll();
 
     if (!subGoals) {
-      throw new AppError('Name already used.');
+      throw new AppError('Sub goals not exists.');
     }
 
     return subGoals;

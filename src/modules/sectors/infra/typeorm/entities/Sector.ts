@@ -2,12 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import Goal from '@modules/goals/infra/typeorm/entities/Goal';
+// import Goal from '@modules/goals/infra/typeorm/entities/Goal';
 
 @Entity('sectors')
 class Sector {
@@ -20,8 +19,8 @@ class Sector {
   @Column()
   leader: string;
 
-  @OneToMany(() => Goal, goal => goal.sector, { eager: true })
-  goals: Goal[];
+  // @OneToMany(() => Goal, goal => goal.sector, { eager: true })
+  // goals: Goal[];
 
   @CreateDateColumn()
   created_at: Date;

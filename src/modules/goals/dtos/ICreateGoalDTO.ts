@@ -4,5 +4,5 @@ export default interface ICreateGoalDTO {
   name: string;
   status: string;
   weight: string;
-  // sub_goals: ICreateSubGoalDTO[];
+  sectors: string[];
 }

@@ -24,4 +24,6 @@ subGoalsRouter.post(
   subGoalsController.create,
 );
 
+subGoalsRouter.put('/', subGoalsController.update);
+
 export default subGoalsRouter;
