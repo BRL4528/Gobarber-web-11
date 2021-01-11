@@ -12,6 +12,12 @@ class SubGoalsRepository implements ISubGoalsRepository {
     this.ormRepository = getRepository(SubGoal);
   }
 
+  public async findAll(): Promise<SubGoal[] | undefined> {
+    const subGoals = await this.ormRepository.find();
+
+    return subGoals;
+  }
+
   public async findById(id: string): Promise<SubGoal | undefined> {
     const subGoal = await this.ormRepository.findOne(id);
 

@@ -6,10 +6,6 @@ import IGoalsRepository from '../repositories/IGoalsRepository';
 
 import Goal from '../infra/typeorm/entities/Goal';
 
-interface IRequest {
-  id: string;
-}
-
 @injectable()
 class ListGoalService {
   constructor(
@@ -17,14 +13,14 @@ class ListGoalService {
     private goalsRepository: IGoalsRepository,
   ) {}
 
-  public async execute({ id }: IRequest): Promise<Goal> {
-    const goal = await this.goalsRepository.findById(id);
+  public async execute(): Promise<Goal[]> {
+    const goals = await this.goalsRepository.findAll();
 
-    if (!goal) {
-      throw new AppError('Goal not exists.');
+    if (!goals) {
+      throw new AppError('Goals not exists.');
     }
 
-    return goal;
+    return goals;
   }
 }
 

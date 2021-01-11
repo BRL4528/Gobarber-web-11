@@ -7,15 +7,11 @@ import ListGoalService from '@modules/goals/services/ListGoalService';
 
 export default class GoalsController {
   public async index(req: Request, res: Response): Promise<Response> {
-    const { id } = req.query;
-
     const listGoal = container.resolve(ListGoalService);
 
-    const goal = await listGoal.execute({
-      id: String(id),
-    });
+    const goals = await listGoal.execute();
 
-    return res.json(goal);
+    return res.json(goals);
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
