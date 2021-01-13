@@ -46,7 +46,6 @@ class CreateSubGoalService {
     });
 
     const existentGoals = await this.goalsRepository.findAllById(goalsIds);
-    console.log(existentGoals);
 
     if (!existentGoals) {
       throw new AppError('Could not find any goals with given ids');

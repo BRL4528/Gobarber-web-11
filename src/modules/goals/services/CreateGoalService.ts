@@ -52,7 +52,6 @@ class CreateGoalService {
     const existentSectors = await this.sectorsRepository.findAllById(
       sectorsIds,
     );
-    console.log(existentSectors);
 
     if (!existentSectors) {
       throw new AppError('Could not find any goals with given ids');
