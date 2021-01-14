@@ -2,7 +2,6 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 // import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import IGoalsRepository from '@modules/goals/repositories/IGoalsRepository';
 import ISubGoalsRepository from '../repositories/ISubGoalsRepository';
 
 import SubGoal from '../infra/typeorm/entities/SubGoal';
@@ -18,9 +17,6 @@ class CreateSubGoalService {
   constructor(
     @inject('SubGoalsRepository')
     private subGoalsRepository: ISubGoalsRepository,
-
-    @inject('GoalsRepository')
-    private goalsRepository: IGoalsRepository,
   ) {}
 
   public async execute({ name, status, weight }: IRequest): Promise<SubGoal> {
