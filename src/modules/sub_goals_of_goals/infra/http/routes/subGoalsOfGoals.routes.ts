@@ -9,7 +9,7 @@ const subGoalsOfGoalsController = new SubGoalsOfGoalsController();
 
 const subGoalsOfGoalsRouter = Router();
 
-// subGoalsOfGoalsRouter.get('/', subGoalsOfGoalsController.index);
+subGoalsOfGoalsRouter.get('/', subGoalsOfGoalsController.show);
 
 subGoalsOfGoalsRouter.post(
   '/',

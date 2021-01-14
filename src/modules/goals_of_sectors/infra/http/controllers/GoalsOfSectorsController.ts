@@ -2,16 +2,23 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 // import { classToClass } from 'class-transformer';
 
-// import ListSubGoalService from '@modules/sub_goals/services/ListSubGoalService';
+import ShowGoalOfSectorService from '@modules/goals_of_sectors/services/ShowGoalOfSectorService';
 import CreateGoalOfSectorService from '@modules/goals_of_sectors/services/CreateGoalOfSectorService';
-// import UpdateSubGoalService from '@modules/sub_goals/services/UpdateSubGoalService';
+// import UpdateSubGoalService from '@modules/goals_of_sectors/services/UpdateSubGoalService';
 
 export default class GoalsOfSectorsController {
-  // public async index(req: Request, res: Response): Promise<Response> {
-  //   const listSubGoal = container.resolve(ListSubGoalService);
-  //   const subGoal = await listSubGoal.execute();
-  //   return res.json(subGoal);
-  // }
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { sector_id } = req.query;
+
+    const showGoalOfSector = container.resolve(ShowGoalOfSectorService);
+
+    const goalOfSector = await showGoalOfSector.execute({
+      sector_id: String(sector_id),
+    });
+
+    return res.json(goalOfSector);
+  }
+
   public async create(req: Request, res: Response): Promise<Response> {
     const { goal_id, sector_id } = req.body;
     const createGoalOfSector = container.resolve(CreateGoalOfSectorService);

@@ -49,17 +49,11 @@ class GoalsRepository implements IGoalsRepository {
     return goal;
   }
 
-  public async create({
-    name,
-    status,
-    weight,
-    sectors,
-  }: ICreateGoalDTO): Promise<Goal> {
+  public async create({ name, status, weight }: ICreateGoalDTO): Promise<Goal> {
     const goal = this.ormRepository.create({
       name,
       status,
       weight,
-      sector_ids: sectors,
     });
 
     await this.ormRepository.save(goal);

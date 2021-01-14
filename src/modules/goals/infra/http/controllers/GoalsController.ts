@@ -16,7 +16,7 @@ export default class GoalsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { name, status, weight, sectors } = req.body;
+    const { name, status, weight } = req.body;
 
     const createGoal = container.resolve(CreateGoalService);
 
@@ -24,7 +24,6 @@ export default class GoalsController {
       name,
       status,
       weight,
-      sectors,
     });
 
     return res.json(goal);

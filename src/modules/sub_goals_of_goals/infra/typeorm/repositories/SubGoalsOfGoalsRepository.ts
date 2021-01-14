@@ -43,13 +43,13 @@ class SubGoalsOfGoalsRepository implements ISubGoalsOfGoalsRepository {
   public async findAllGoalById(
     goal_id: string,
   ): Promise<SubGoalOfGoal[] | undefined> {
-    const goals = await this.ormRepository.find({
+    const subGoalsOfGoal = await this.ormRepository.find({
       where: {
         goal_id,
       },
     });
 
-    return goals;
+    return subGoalsOfGoal;
   }
 
   public async findByName(name: string): Promise<SubGoalOfGoal | undefined> {

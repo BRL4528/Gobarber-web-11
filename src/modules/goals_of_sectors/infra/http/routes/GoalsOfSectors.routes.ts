@@ -9,7 +9,7 @@ const goalsOfSectorsController = new GoalsOfSectorsController();
 
 const goalsOfSectorsRouter = Router();
 
-// goalsOfSectorsRouter.get('/', subGoalsOfGoalsController.index);
+goalsOfSectorsRouter.get('/', goalsOfSectorsController.show);
 
 goalsOfSectorsRouter.post(
   '/',
@@ -24,6 +24,6 @@ goalsOfSectorsRouter.post(
   goalsOfSectorsController.create,
 );
 
-// goalsOfSectorsRouter.put('/', subGoalsOfGoalsController.update);
+// goalsOfSectorsRouter.put('/', goalsOfSectorsController.update);
 
 export default goalsOfSectorsRouter;
