@@ -2,7 +2,7 @@ import SubGoal from '../infra/typeorm/entities/SubGoal';
 import ICreateSubGoalDTO from '../dtos/ICreateSubGoalDTO';
 
 export default interface ISubGoalsRepository {
-  findAll(): Promise<SubGoal[] | undefined>;
+  findAll(): Promise<SubGoal[]>;
   findById(id: string): Promise<SubGoal | undefined>;
   findByName(name: string): Promise<SubGoal | undefined>;
   create(data: ICreateSubGoalDTO): Promise<SubGoal>;

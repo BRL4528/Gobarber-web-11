@@ -8,7 +8,7 @@ import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
 class FakeSubGoalsRepository implements ISubGoalsRepository {
   private subGoals: SubGoal[] = [];
 
-  public async findAll(): Promise<SubGoal[] | undefined> {
+  public async findAll(): Promise<SubGoal[]> {
     const findSubGoals = this.subGoals.filter(subGoal => subGoal);
 
     return findSubGoals;

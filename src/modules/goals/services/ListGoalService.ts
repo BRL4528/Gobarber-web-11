@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
 // import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IGoalsRepository from '../repositories/IGoalsRepository';
 
@@ -15,10 +15,6 @@ class ListGoalService {
 
   public async execute(): Promise<Goal[]> {
     const goals = await this.goalsRepository.findAll();
-
-    if (!goals) {
-      throw new AppError('Goals not exists.');
-    }
 
     return goals;
   }
