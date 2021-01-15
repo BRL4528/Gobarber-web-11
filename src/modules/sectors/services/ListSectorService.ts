@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
 // import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import ISectorsRepository from '../repositories/ISectorsRepository';
 
@@ -15,10 +15,6 @@ class CreateSectorService {
 
   public async execute(): Promise<Sector[]> {
     const sectors = await this.sectorsRepository.findAll();
-
-    if (!sectors) {
-      throw new AppError('Sectors not exists.');
-    }
 
     return sectors;
   }
