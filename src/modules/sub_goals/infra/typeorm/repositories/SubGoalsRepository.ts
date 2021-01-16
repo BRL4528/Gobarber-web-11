@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import ISubGoalsRepository from '@modules/sub_goals/repositories/ISubGoalsRepository';
 import ICreateSubGoalDTO from '@modules/sub_goals/dtos/ICreateSubGoalDTO';
@@ -10,6 +10,20 @@ class SubGoalsRepository implements ISubGoalsRepository {
 
   constructor() {
     this.ormRepository = getRepository(SubGoal);
+  }
+
+  public async findAllByName(
+    subGoals: ICreateSubGoalDTO[],
+  ): Promise<SubGoal[]> {
+    const subGoalsNames = subGoals.map(sub_goal => sub_goal.name);
+
+    const existsGoals = await this.ormRepository.find({
+      where: {
+        name: In(subGoalsNames),
+      },
+    });
+
+    return existsGoals;
   }
 
   public async findAll(): Promise<SubGoal[]> {

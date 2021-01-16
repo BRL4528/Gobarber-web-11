@@ -2,6 +2,7 @@ import path from 'path';
 import multer from 'multer';
 import crypto from 'crypto';
 
+// const uploadsFolder = path.resolve(__dirname, '..', '..', 'uploads');
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 export default {
