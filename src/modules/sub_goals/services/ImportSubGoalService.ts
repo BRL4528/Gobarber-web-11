@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import csvParse from 'csv-parse';
 import fs from 'fs';
 
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
 // import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import ISubGoalsRepository from '../repositories/ISubGoalsRepository';
 
@@ -50,27 +50,24 @@ class ImportSubGoalService {
       (subGoal: SubGoal) => subGoal.name,
     );
 
-    // const subGoalsNames = subGoals.map(subGoal => subGoal.name);
-
     const addSubGoalNames = subGoals
       .filter(subGoal => !existentSubGoalsNames.includes(subGoal.name))
-      .filter((value, index, array) => array.indexOf(value) === index);
+      .filter(
+        (value, index, self) =>
+          self.findIndex(subGoal => {
+            return subGoal.name === value.name;
+          }) === index,
+      );
 
-    console.log(addSubGoalNames);
-
-    // const checkSubGoalsExists = await this.subGoalsRepository.findByName(name);
-
-    // if (checkSubGoalsExists) {
-    //   throw new AppError('Name already used.');
+    // if (addSubGoalNames.length < 0) {
+    //   throw new AppError('Sub goals disabled');
     // }
 
-    // const subGoal = await this.subGoalsRepository.create({
-    //   name,
-    //   status,
-    //   weight,
-    // });
+    const newSubGoals = this.subGoalsRepository.createAll(addSubGoalNames);
 
-    return subGoals;
+    await fs.promises.unlink(filePath);
+
+    return newSubGoals;
   }
 }
 

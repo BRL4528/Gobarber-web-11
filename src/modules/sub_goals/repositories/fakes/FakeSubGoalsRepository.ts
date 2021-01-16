@@ -32,6 +32,16 @@ class FakeSubGoalsRepository implements ISubGoalsRepository {
     return findSubGoal;
   }
 
+  public async createAll(subGoals: ICreateSubGoalDTO[]): Promise<SubGoal[]> {
+    const subGoal = new SubGoal();
+
+    Object.assign(subGoal, { id: uuid() }, subGoals);
+
+    this.subGoals.push(subGoal);
+
+    return this.subGoals;
+  }
+
   public async create(subGoalData: ICreateSubGoalDTO): Promise<SubGoal> {
     const subGoal = new SubGoal();
 
