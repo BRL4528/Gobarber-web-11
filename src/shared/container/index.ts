@@ -24,6 +24,9 @@ import SubGoalsOfGoalsRepository from '@modules/sub_goals_of_goals/infra/typeorm
 import IGoalsOfSectorsRepository from '@modules/goals_of_sectors/repositories/IGoalsOfSectorsRepository';
 import GoalsOfSectorsRepository from '@modules/goals_of_sectors/infra/typeorm/repositories/GoalsOfSectorsRepository';
 
+import IEmployeesRepository from '@modules/employees/repositories/IEmployeesRepository';
+import EmployeesRepository from '@modules/employees/infra/typeorm/repositories/EmployeesRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -57,4 +60,9 @@ container.registerSingleton<ISubGoalsOfGoalsRepository>(
 container.registerSingleton<IGoalsOfSectorsRepository>(
   'GoalsOfSectorsRepository',
   GoalsOfSectorsRepository,
+);
+
+container.registerSingleton<IEmployeesRepository>(
+  'EmployeesRepository',
+  EmployeesRepository,
 );

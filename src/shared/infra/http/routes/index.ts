@@ -8,6 +8,7 @@ import goalsRouter from '@modules/goals/infra/http/routes/goals.routes';
 import subGoalsRouter from '@modules/sub_goals/infra/http/routes/subGoals.routes';
 import subGoalsOfGoalsRouter from '@modules/sub_goals_of_goals/infra/http/routes/subGoalsOfGoals.routes';
 import goalsOfSectorsRouter from '@modules/goals_of_sectors/infra/http/routes/GoalsOfSectors.routes';
+import employeesRouter from '@modules/employees/infra/http/routes/employees.routes';
 
 const routes = Router();
 
@@ -20,5 +21,6 @@ routes.use('/goals', goalsRouter);
 routes.use('/sub-goals', subGoalsRouter);
 routes.use('/sub-goals-of-goals', subGoalsOfGoalsRouter);
 routes.use('/goals-of-sectors', goalsOfSectorsRouter);
+routes.use('/employees', employeesRouter);
 
 export default routes;
