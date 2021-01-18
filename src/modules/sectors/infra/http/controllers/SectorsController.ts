@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import ListSectorService from '@modules/sectors/services/ListSectorService';
 import CreateSectorService from '@modules/sectors/services/CreateSectorService';
 import UpdateSectorService from '@modules/sectors/services/UpdateSectorService';
+import ImportSectorService from '@modules/sectors/services/ImportSectorService';
 
 export default class SectorsController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -13,6 +14,14 @@ export default class SectorsController {
     const sector = await listSector.execute();
 
     return res.json(sector);
+  }
+
+  public async import(req: Request, res: Response): Promise<Response> {
+    const importSector = container.resolve(ImportSectorService);
+
+    const sectors = await importSector.execute(req.file.path);
+
+    return res.json(sectors);
   }
 
   public async create(req: Request, res: Response): Promise<Response> {

@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import ISectorsRepository from '@modules/sectors/repositories/ISectorsRepository';
 import ICreateSectorDTO from '@modules/sectors/dtos/ICreateSectorDTO';
@@ -10,6 +10,18 @@ class SectorsRepository implements ISectorsRepository {
 
   constructor() {
     this.ormRepository = getRepository(Sector);
+  }
+
+  public async findAllByName(sectors: ICreateSectorDTO[]): Promise<Sector[]> {
+    const sectorsNames = sectors.map(sector => sector.name);
+
+    const existsSectors = await this.ormRepository.find({
+      where: {
+        name: In(sectorsNames),
+      },
+    });
+
+    return existsSectors;
   }
 
   public async findAll(): Promise<Sector[]> {
@@ -30,6 +42,19 @@ class SectorsRepository implements ISectorsRepository {
     });
 
     return sector;
+  }
+
+  public async createAll(sectors: ICreateSectorDTO[]): Promise<Sector[]> {
+    const sectorsAll = this.ormRepository.create(
+      sectors.map(sector => ({
+        name: sector.name,
+        leader: sector.leader,
+      })),
+    );
+
+    await this.ormRepository.save(sectorsAll);
+
+    return sectorsAll;
   }
 
   public async create(sectorData: ICreateSectorDTO): Promise<Sector> {
