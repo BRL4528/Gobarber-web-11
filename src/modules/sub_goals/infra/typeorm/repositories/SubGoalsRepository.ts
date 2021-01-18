@@ -17,13 +17,13 @@ class SubGoalsRepository implements ISubGoalsRepository {
   ): Promise<SubGoal[]> {
     const subGoalsNames = subGoals.map(sub_goal => sub_goal.name);
 
-    const existsGoals = await this.ormRepository.find({
+    const existsSubGoals = await this.ormRepository.find({
       where: {
         name: In(subGoalsNames),
       },
     });
 
-    return existsGoals;
+    return existsSubGoals;
   }
 
   public async findAll(): Promise<SubGoal[]> {

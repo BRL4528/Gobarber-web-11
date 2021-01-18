@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import IGoalsRepository from '@modules/goals/repositories/IGoalsRepository';
 import ICreateGoalDTO from '@modules/goals/dtos/ICreateGoalDTO';
@@ -10,6 +10,18 @@ class GoalsRepository implements IGoalsRepository {
 
   constructor() {
     this.ormRepository = getRepository(Goal);
+  }
+
+  public async findAllByName(goals: ICreateGoalDTO[]): Promise<Goal[]> {
+    const goalsNames = goals.map(goal => goal.name);
+
+    const existsGoals = await this.ormRepository.find({
+      where: {
+        name: In(goalsNames),
+      },
+    });
+
+    return existsGoals;
   }
 
   public async findAll(): Promise<Goal[]> {
@@ -30,6 +42,20 @@ class GoalsRepository implements IGoalsRepository {
     });
 
     return goal;
+  }
+
+  public async createAll(goals: ICreateGoalDTO[]): Promise<Goal[]> {
+    const goalsAll = this.ormRepository.create(
+      goals.map(goal => ({
+        name: goal.name,
+        status: goal.status,
+        weight: goal.weight,
+      })),
+    );
+
+    await this.ormRepository.save(goalsAll);
+
+    return goalsAll;
   }
 
   public async create({ name, status, weight }: ICreateGoalDTO): Promise<Goal> {

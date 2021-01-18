@@ -5,12 +5,21 @@ import { container } from 'tsyringe';
 import CreateGoalService from '@modules/goals/services/CreateGoalService';
 import ListGoalService from '@modules/goals/services/ListGoalService';
 import UpdateGoalService from '@modules/goals/services/UpdateGoalService';
+import ImportGoalService from '@modules/goals/services/ImportGoalService';
 
 export default class GoalsController {
   public async index(req: Request, res: Response): Promise<Response> {
     const listGoal = container.resolve(ListGoalService);
 
     const goals = await listGoal.execute();
+
+    return res.json(goals);
+  }
+
+  public async import(req: Request, res: Response): Promise<Response> {
+    const importGoal = container.resolve(ImportGoalService);
+
+    const goals = await importGoal.execute(req.file.path);
 
     return res.json(goals);
   }
