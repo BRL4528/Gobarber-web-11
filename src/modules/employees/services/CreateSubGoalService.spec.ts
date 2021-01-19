@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 // import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeSubGoalsRepository from '../repositories/fakes/FakeSubGoalsRepository';
-import CreateSubGoalService from './CreateSubGoalService';
+import CreateSubGoalService from './CreateEmployeeService';
 
 let fakeSubGoalsRepository: FakeSubGoalsRepository;
 // let fakeCacheProvider: FakeCacheProvider;

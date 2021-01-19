@@ -12,7 +12,6 @@ interface IRequest {
   name: string;
   cpf: string;
   salary: string;
-  sector: string;
 }
 
 @injectable()
@@ -34,13 +33,11 @@ class ImportEmployeeService {
     const employees: IRequest[] = [];
 
     parseCSV.on('data', async line => {
-      const [name, cpf, salary, sector] = line.map((cell: string) =>
-        cell.trim(),
-      );
+      const [name, cpf, salary] = line.map((cell: string) => cell.trim());
 
-      if (!name || !cpf || !salary || !sector) return;
+      if (!name || !cpf || !salary) return;
 
-      employees.push({ name, cpf, salary, sector });
+      employees.push({ name, cpf, salary });
     });
 
     await new Promise(resolve => parseCSV.on('end', resolve));

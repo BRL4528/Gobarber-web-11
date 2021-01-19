@@ -2,19 +2,19 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 // import { classToClass } from 'class-transformer';
 
-// import ListSubGoalService from '@modules/employees/services/ListSubGoalService';
-// import CreateSubGoalService from '@modules/employees/services/CreateSubGoalService';
-// import UpdateSubGoalService from '@modules/employees/services/UpdateSubGoalService';
+import ListEmployeeService from '@modules/employees/services/ListEmployeeService';
+import CreateEmployeeService from '@modules/employees/services/CreateEmployeeService';
+import UpdateEmployeeService from '@modules/employees/services/UpdateEmployeeService';
 import ImportEmployeeService from '@modules/employees/services/ImportEmployeeService';
 
 export default class EmployeesController {
-  // public async index(req: Request, res: Response): Promise<Response> {
-  //   const listSubGoal = container.resolve(ListSubGoalService);
+  public async index(req: Request, res: Response): Promise<Response> {
+    const listEmployee = container.resolve(ListEmployeeService);
 
-  //   const subGoal = await listSubGoal.execute();
+    const employee = await listEmployee.execute();
 
-  //   return res.json(subGoal);
-  // }
+    return res.json(employee);
+  }
 
   public async import(req: Request, res: Response): Promise<Response> {
     const importEmployee = container.resolve(ImportEmployeeService);
@@ -24,33 +24,33 @@ export default class EmployeesController {
     return res.json(employees);
   }
 
-  // public async create(req: Request, res: Response): Promise<Response> {
-  //   const { name, status, weight } = req.body;
+  public async create(req: Request, res: Response): Promise<Response> {
+    const { name, cpf, salary } = req.body;
 
-  //   const createSubGoal = container.resolve(CreateSubGoalService);
+    const createEmployee = container.resolve(CreateEmployeeService);
 
-  //   const subGoal = await createSubGoal.execute({
-  //     name,
-  //     status,
-  //     weight,
-  //   });
+    const employee = await createEmployee.execute({
+      name,
+      cpf,
+      salary,
+    });
 
-  //   return res.json(subGoal);
-  // }
+    return res.json(employee);
+  }
 
-  // public async update(req: Request, res: Response): Promise<Response> {
-  //   const { sub_goal_id } = req.query;
-  //   const { name, status, weight } = req.body;
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { employee_id } = req.query;
+    const { name, cpf, salary } = req.body;
 
-  //   const updateSubGoal = container.resolve(UpdateSubGoalService);
+    const updateEmployee = container.resolve(UpdateEmployeeService);
 
-  //   const subGoal = await updateSubGoal.execute({
-  //     sub_goal_id: String(sub_goal_id),
-  //     name,
-  //     status,
-  //     weight,
-  //   });
+    const employee = await updateEmployee.execute({
+      employee_id: String(employee_id),
+      name,
+      cpf,
+      salary,
+    });
 
-  //   return res.json(subGoal);
-  // }
+    return res.json(employee);
+  }
 }

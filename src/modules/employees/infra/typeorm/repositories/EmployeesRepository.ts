@@ -52,7 +52,6 @@ class EmployeesRepository implements IEmployeesRepository {
         name: employee.name,
         cpf: employee.cpf,
         salary: employee.salary,
-        sector: employee.sector,
       })),
     );
 
@@ -65,13 +64,11 @@ class EmployeesRepository implements IEmployeesRepository {
     name,
     cpf,
     salary,
-    sector,
   }: ICreateEmployeeDTO): Promise<Employee> {
     const employee = this.ormRepository.create({
       name,
       cpf,
       salary,
-      sector,
     });
 
     await this.ormRepository.save(employee);

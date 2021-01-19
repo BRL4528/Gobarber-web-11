@@ -2,7 +2,7 @@
 
 // import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeSubGoalsRepository from '../repositories/fakes/FakeSubGoalsRepository';
-import ListSubGoalService from './ListSubGoalService';
+import ListSubGoalService from './ListEmployeeService';
 
 let fakeSubGoalsRepository: FakeSubGoalsRepository;
 // let fakeCacheProvider: FakeCacheProvider;

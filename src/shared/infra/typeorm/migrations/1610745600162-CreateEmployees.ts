@@ -27,10 +27,6 @@ export default class CreateEmployees1610745600162
             type: 'varchar',
           },
           {
-            name: 'sector',
-            type: 'varchar',
-          },
-          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

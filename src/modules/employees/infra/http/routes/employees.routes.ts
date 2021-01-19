@@ -1,5 +1,5 @@
 import { Router } from 'express';
-// import { celebrate, Segments, Joi } from 'celebrate';
+import { celebrate, Segments, Joi } from 'celebrate';
 import multer from 'multer';
 
 // import ensureAuthenticated from '../middlewares/ensureAuthenticated';
@@ -12,20 +12,19 @@ const employeesController = new EmployeesController();
 const employeesRouter = Router();
 const upload = multer(uploadConfig);
 
-// employeesRouter.get('/', employeesController.index);
+employeesRouter.get('/', employeesController.index);
 
-// employeesRouter.post(
-//   '/',
-//   celebrate({
-//     [Segments.BODY]: {
-//       name: Joi.string().required(),
-//       status: Joi.string().required(),
-//       weight: Joi.string().required(),
-//       goals: Joi.array(),
-//     },
-//   }),
-//   employeesController.create,
-// );
+employeesRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      cpf: Joi.string().required(),
+      salary: Joi.string().required(),
+    },
+  }),
+  employeesController.create,
+);
 
 employeesRouter.post(
   '/import',

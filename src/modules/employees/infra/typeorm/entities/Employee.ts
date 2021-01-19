@@ -22,9 +22,6 @@ class Employee {
   @Column()
   salary: string;
 
-  @Column()
-  sector: string;
-
   // @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.sector, {
   //   eager: true,
   // })
