@@ -9,6 +9,7 @@ import subGoalsRouter from '@modules/sub_goals/infra/http/routes/subGoals.routes
 import subGoalsOfGoalsRouter from '@modules/sub_goals_of_goals/infra/http/routes/subGoalsOfGoals.routes';
 import goalsOfSectorsRouter from '@modules/goals_of_sectors/infra/http/routes/GoalsOfSectors.routes';
 import employeesRouter from '@modules/employees/infra/http/routes/employees.routes';
+import generateTokenBIRouter from '@modules/generate_token_bi/infra/http/routes/generate_token_bi.routes';
 
 const routes = Router();
 
@@ -22,5 +23,6 @@ routes.use('/sub-goals', subGoalsRouter);
 routes.use('/sub-goals-of-goals', subGoalsOfGoalsRouter);
 routes.use('/goals-of-sectors', goalsOfSectorsRouter);
 routes.use('/employees', employeesRouter);
+routes.use('/getEmbedToken', generateTokenBIRouter);
 
 export default routes;
