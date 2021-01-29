@@ -1,7 +1,5 @@
 import { Router } from 'express';
 
-// import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-
 import GenerateTokenBIController from '../controllers/GenerateTokenBIController';
 
 const generateTokenBIController = new GenerateTokenBIController();

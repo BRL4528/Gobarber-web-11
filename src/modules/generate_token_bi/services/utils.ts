@@ -26,7 +26,6 @@ const config = {
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function getAuthHeader(accessToken: any) {
   // Function to append Bearer against the Access Token
-  // console.log(accessToken);
 
   return 'Bearer '.concat(accessToken);
 }

@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable no-prototype-builtins */
-// import { sign } from 'jsonwebtoken';
 import adal from 'adal-node';
 import fetch from 'node-fetch';
 
@@ -22,15 +21,6 @@ const config = {
   clientSecret: '46yxgLE095Ze.mBsq09BA.5fM4BeLHv0__',
   tenantId: 'cf5d24a3-4e7e-4f83-b3cd-a96390b160af',
 };
-
-interface IRequest {
-  nickname: string;
-  password: string;
-}
-
-interface IResponse {
-  token: string;
-}
 
 class AuthenticateGenerateTokenBIService {
   // eslint-disable-next-line consistent-return
@@ -80,8 +70,8 @@ class AuthenticateGenerateTokenBIService {
 
     // Convert result in json to retrieve values
     const resultJson = await result.json();
-    console.log('nem deve chegar aqui');
     // Add report data for embedding
+
     const reportDetails = new PowerBiReportDetails(
       resultJson.id,
       resultJson.name,
@@ -92,7 +82,6 @@ class AuthenticateGenerateTokenBIService {
 
     // Create mapping for report and Embed URL
     reportEmbedConfig.reportsDetail = [reportDetails];
-    // console.log(reportEmbedConfig);
 
     // Create list of datasets
     const datasetIds = [resultJson.datasetId];
@@ -108,7 +97,7 @@ class AuthenticateGenerateTokenBIService {
       datasetIds,
       workspaceId,
     );
-    // console.log(reportEmbedConfig);
+
     return reportEmbedConfig; // Resposta necessaria no front IMPORTANTE
   }
 
@@ -119,7 +108,6 @@ class AuthenticateGenerateTokenBIService {
   ) {
     // Add report id in the request
     // Add dataset ids in the request
-    // console.log(datasetIds);
 
     const formData = {
       reports: [
@@ -139,14 +127,6 @@ class AuthenticateGenerateTokenBIService {
       ],
     };
 
-    // formData.datasets.push({
-    //   id: datasetIds[0],
-    // });
-
-    console.log(formData);
-
-    // formData.datasets = [];
-
     // Add targetWorkspace id in the request
 
     const embedTokenApi = 'https://api.powerbi.com/v1.0/myorg/GenerateToken';
@@ -154,35 +134,22 @@ class AuthenticateGenerateTokenBIService {
 
     // Generate Embed token for single report, workspace, and multiple datasets. Refer https://aka.ms/MultiResourceEmbedToken
 
-    // console.log(headers);
     const result = await fetch(embedTokenApi, {
       method: 'POST',
       headers,
       body: JSON.stringify(formData),
     });
-    // console.log(result);
-    // console.log(result);
+
     if (!result.ok) throw result;
+
     return result.json();
   }
 
   // eslint-disable-next-line consistent-return
   public async getAccessToken(): Promise<any> {
-    // let config: IConfig;
-
-    // config = path.resolve(__dirname, 'config.js');
-
-    // config = path.resolve(__dirname, '..', '..', '..', 'config', 'config.js');
-
     const { AuthenticationContext } = adal;
 
     const authorityUrl = config.authorityUri;
-
-    // const { secret, expiresIn } = authConfig.jwt;
-
-    // const token = sign({}, secret, {
-    //   expiresIn,
-    // });
 
     if (config.authenticationMode.toLowerCase() === 'masteruser') {
       const context = new AuthenticationContext(authorityUrl);
@@ -199,7 +166,6 @@ class AuthenticateGenerateTokenBIService {
             if (err) {
               reject(tokenResponse == null ? err : tokenResponse);
             }
-            // console.log(tokenResponse);
             resolve(tokenResponse);
           },
         );

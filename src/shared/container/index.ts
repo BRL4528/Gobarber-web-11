@@ -27,6 +27,12 @@ import GoalsOfSectorsRepository from '@modules/goals_of_sectors/infra/typeorm/re
 import IEmployeesRepository from '@modules/employees/repositories/IEmployeesRepository';
 import EmployeesRepository from '@modules/employees/infra/typeorm/repositories/EmployeesRepository';
 
+import IAnalysisModuleRepository from '@modules/analysis_module/repositories/IAnalysisModuleRepository';
+import AnalysisModuleRepository from '@modules/analysis_module/infra/typeorm/repositories/AnalysisModuleRepository';
+
+import IAnalysisModuleOfGoalsRepository from '@modules/analysis_module_of_goals/repositories/IAnalysisModuleOfGoalsRepository';
+import AnalysisModuleOfGoalsRepository from '@modules/analysis_module_of_goals/infra/typeorm/repositories/AnalysisModuleOfGoalsRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -65,4 +71,14 @@ container.registerSingleton<IGoalsOfSectorsRepository>(
 container.registerSingleton<IEmployeesRepository>(
   'EmployeesRepository',
   EmployeesRepository,
+);
+
+container.registerSingleton<IAnalysisModuleRepository>(
+  'AnalysisModuleRepository',
+  AnalysisModuleRepository,
+);
+
+container.registerSingleton<IAnalysisModuleOfGoalsRepository>(
+  'AnalysisModuleOfGoalsRepository',
+  AnalysisModuleOfGoalsRepository,
 );
