@@ -33,6 +33,9 @@ import AnalysisModuleRepository from '@modules/analysis_module/infra/typeorm/rep
 import IAnalysisModuleOfGoalsRepository from '@modules/analysis_module_of_goals/repositories/IAnalysisModuleOfGoalsRepository';
 import AnalysisModuleOfGoalsRepository from '@modules/analysis_module_of_goals/infra/typeorm/repositories/AnalysisModuleOfGoalsRepository';
 
+import IResultsOfSubGoalsRepository from '@modules/results_of_sub_goals/repositories/IResultsOfSubGoalsRepository';
+import ResultsOfSubGoalsRepository from '@modules/results_of_sub_goals/infra/typeorm/repositories/ResultsOfSubGoalsRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -81,4 +84,9 @@ container.registerSingleton<IAnalysisModuleRepository>(
 container.registerSingleton<IAnalysisModuleOfGoalsRepository>(
   'AnalysisModuleOfGoalsRepository',
   AnalysisModuleOfGoalsRepository,
+);
+
+container.registerSingleton<IResultsOfSubGoalsRepository>(
+  'ResultsOfSubGoalsRepository',
+  ResultsOfSubGoalsRepository,
 );
