@@ -2,14 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  // JoinTable,
-  // OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-// import SubGoalOfGoal from '@modules/sub_goals_of_goals/infra/typeorm/entities/SubGoalOfGoal';
-// import GoalOfSector from '@modules/goals_of_sectors/infra/typeorm/entities/GoalOfSector';
+import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
 
 @Entity('results_of_sub_goals')
 class ResultOfSubGoal {
@@ -19,15 +18,9 @@ class ResultOfSubGoal {
   @Column()
   result: string;
 
-  // @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.goals)
-  // @JoinTable()
-  // goal: GoalOfSector[];
-
-  // @OneToMany(() => SubGoalOfGoal, subGoalOfGoal => subGoalOfGoal.goal, {
-  //   eager: true,
-  // })
-  // @JoinTable()
-  // sub_goals_of_goals: SubGoalOfGoal[];
+  @ManyToOne(() => SubGoal, subGoal => subGoal.result_of_sub_goal)
+  @JoinColumn({ name: 'sub_goal_id' })
+  sub_goal: SubGoal;
 
   @Column()
   sub_goal_id: string;

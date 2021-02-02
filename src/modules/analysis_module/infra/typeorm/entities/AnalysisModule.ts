@@ -2,13 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  // JoinTable,
-  // OneToMany,
+  JoinTable,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-// import SubGoalOfGoal from '@modules/sub_goals_of_goals/infra/typeorm/entities/SubGoalOfGoal';
+import AnalyzeModuleOfGoal from '@modules/analysis_module_of_goals/infra/typeorm/entities/AnalyzeModuleOfGoal';
 
 @Entity('analysis_module')
 class AnalysisModule {
@@ -27,6 +27,13 @@ class AnalysisModule {
   // @OneToMany(() => SubGoalOfGoal, subGoalOfGoal => subGoalOfGoal.sub_goals)
   // @JoinTable()
   // sub_goal: SubGoalOfGoal[];
+
+  @OneToMany(
+    () => AnalyzeModuleOfGoal,
+    analyzeModuleOfGoal => analyzeModuleOfGoal.analysis_module,
+  )
+  @JoinTable()
+  analyze_module_of_goal: AnalyzeModuleOfGoal;
 
   @CreateDateColumn()
   created_at: Date;
