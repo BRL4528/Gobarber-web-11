@@ -12,7 +12,7 @@ const analysisModuleController = new AnalysisModuleController();
 const analysisModuleRouter = Router();
 // const upload = multer(uploadConfig);
 
-// analysisModuleRouter.get('/', analysisModuleController.index);
+analysisModuleRouter.get('/', analysisModuleController.index);
 
 analysisModuleRouter.post(
   '/',
@@ -33,6 +33,6 @@ analysisModuleRouter.post(
 //   analysisModuleController.import,
 // );
 
-// analysisModuleRouter.put('/', analysisModuleController.update);
+analysisModuleRouter.put('/', analysisModuleController.update);
 
 export default analysisModuleRouter;

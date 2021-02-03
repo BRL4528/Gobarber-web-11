@@ -2,19 +2,19 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 // import { classToClass } from 'class-transformer';
 
-// import ListSubGoalService from '@modules/sub_goals/services/ListSubGoalService';
+import ListAnalyzeModuleService from '@modules/analysis_module/services/ListAnalyzeModuleService';
 import CreateAnalyzeModuleService from '@modules/analysis_module/services/CreateAnalyzeModuleService';
-// import UpdateSubGoalService from '@modules/sub_goals/services/UpdateSubGoalService';
-// import ImportSubGoalService from '@modules/sub_goals/services/ImportSubGoalService';
+import UpdateAnalyzeModuleService from '@modules/analysis_module/services/UpdateAnalyzeModuleService';
+// import ImportSubGoalService from '@modules/analysis_module/services/ImportSubGoalService';
 
 export default class AnalysisModuleController {
-  // public async index(req: Request, res: Response): Promise<Response> {
-  //   const listSubGoal = container.resolve(ListSubGoalService);
+  public async index(req: Request, res: Response): Promise<Response> {
+    const listAnalyzeModule = container.resolve(ListAnalyzeModuleService);
 
-  //   const analyzeModule = await listSubGoal.execute();
+    const analyzeModule = await listAnalyzeModule.execute();
 
-  //   return res.json(analyzeModule);
-  // }
+    return res.json(analyzeModule);
+  }
 
   // public async import(req: Request, res: Response): Promise<Response> {
   //   const importSubGoal = container.resolve(ImportSubGoalService);
@@ -38,19 +38,19 @@ export default class AnalysisModuleController {
     return res.json(analyzeModule);
   }
 
-  // public async update(req: Request, res: Response): Promise<Response> {
-  //   const { sub_goal_id } = req.query;
-  //   const { name, url, responsible } = req.body;
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { analyze_module_id } = req.query;
+    const { name, url, responsible } = req.body;
 
-  //   const updateSubGoal = container.resolve(UpdateSubGoalService);
+    const updateAnalyzeModule = container.resolve(UpdateAnalyzeModuleService);
 
-  //   const analyzeModule = await updateSubGoal.execute({
-  //     sub_goal_id: String(sub_goal_id),
-  //     name,
-  //     url,
-  //     responsible,
-  //   });
+    const analyzeModule = await updateAnalyzeModule.execute({
+      analyze_module_id: String(analyze_module_id),
+      name,
+      url,
+      responsible,
+    });
 
-  //   return res.json(analyzeModule);
-  // }
+    return res.json(analyzeModule);
+  }
 }
