@@ -21,10 +21,20 @@ export default class CreateAnalysisModule1611939290097
           {
             name: 'url',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'responsible',
             type: 'varchar',
+          },
+          {
+            name: 'observations',
+            type: 'varchar',
+          },
+          {
+            name: 'condition',
+            type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'created_at',

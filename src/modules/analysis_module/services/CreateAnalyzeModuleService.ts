@@ -10,6 +10,8 @@ interface IRequest {
   name: string;
   url: string;
   responsible: string;
+  observations: string;
+  condition: string;
 }
 
 @injectable()
@@ -23,6 +25,8 @@ class CreateAnalyzeModuleService {
     name,
     url,
     responsible,
+    observations,
+    condition,
   }: IRequest): Promise<AnalysisModule> {
     const checkAnalyzeModuleExists = await this.analysisModuleRepository.findByName(
       name,
@@ -36,6 +40,8 @@ class CreateAnalyzeModuleService {
       name,
       url,
       responsible,
+      observations,
+      condition,
     });
 
     return analyzeModule;

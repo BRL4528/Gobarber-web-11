@@ -24,6 +24,12 @@ class AnalysisModule {
   @Column()
   responsible: string;
 
+  @Column()
+  observations: string;
+
+  @Column()
+  condition: string;
+
   // @OneToMany(() => SubGoalOfGoal, subGoalOfGoal => subGoalOfGoal.sub_goals)
   // @JoinTable()
   // sub_goal: SubGoalOfGoal[];

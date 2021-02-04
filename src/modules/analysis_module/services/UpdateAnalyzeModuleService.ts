@@ -11,6 +11,8 @@ interface IRequest {
   name?: string;
   url?: string;
   responsible?: string;
+  observations?: string;
+  condition?: string;
 }
 
 @injectable()
@@ -25,6 +27,8 @@ class UpdateAnalyzeModuleService {
     name,
     url,
     responsible,
+    observations,
+    condition,
   }: IRequest): Promise<AnalysisModule> {
     const analyzeModule = await this.analysisModuleRepository.findById(
       analyze_module_id,
@@ -44,6 +48,14 @@ class UpdateAnalyzeModuleService {
 
     if (responsible) {
       analyzeModule.responsible = responsible;
+    }
+
+    if (observations) {
+      analyzeModule.observations = observations;
+    }
+
+    if (condition) {
+      analyzeModule.condition = condition;
     }
 
     return this.analysisModuleRepository.save(analyzeModule);

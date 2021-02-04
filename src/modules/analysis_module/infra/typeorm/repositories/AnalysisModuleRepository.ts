@@ -56,6 +56,8 @@ class AnalysisModuleRepository implements IAnalysisModuleRepository {
         name: analyzeModule.name,
         url: analyzeModule.url,
         responsible: analyzeModule.responsible,
+        observations: analyzeModule.observations,
+        condition: analyzeModule.condition,
       })),
     );
 
@@ -68,11 +70,15 @@ class AnalysisModuleRepository implements IAnalysisModuleRepository {
     name,
     url,
     responsible,
+    observations,
+    condition,
   }: ICreateAnalysisModuleDTO): Promise<AnalysisModule> {
     const analyzeModule = this.ormRepository.create({
       name,
       url,
       responsible,
+      observations,
+      condition,
     });
 
     await this.ormRepository.save(analyzeModule);

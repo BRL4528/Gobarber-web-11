@@ -12,6 +12,8 @@ interface IRequest {
   name: string;
   status: string;
   weight: string;
+  observations: string;
+  condition: string;
 }
 
 @injectable()
@@ -33,11 +35,17 @@ class ImportSubGoalService {
     const subGoals: IRequest[] = [];
 
     parseCSV.on('data', async line => {
-      const [name, status, weight] = line.map((cell: string) => cell.trim());
+      const [
+        name,
+        status,
+        weight,
+        observations,
+        condition,
+      ] = line.map((cell: string) => cell.trim());
 
-      if (!name || !status || !weight) return;
+      if (!name || !status || !weight || !observations || !condition) return;
 
-      subGoals.push({ name, status, weight });
+      subGoals.push({ name, status, weight, observations, condition });
     });
 
     await new Promise(resolve => parseCSV.on('end', resolve));

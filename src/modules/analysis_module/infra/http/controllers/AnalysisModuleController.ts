@@ -25,7 +25,7 @@ export default class AnalysisModuleController {
   // }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { name, url, responsible } = req.body;
+    const { name, url, responsible, observations, condition } = req.body;
 
     const createAnalyzeModule = container.resolve(CreateAnalyzeModuleService);
 
@@ -33,6 +33,8 @@ export default class AnalysisModuleController {
       name,
       url,
       responsible,
+      observations,
+      condition,
     });
 
     return res.json(analyzeModule);
@@ -40,7 +42,7 @@ export default class AnalysisModuleController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const { analyze_module_id } = req.query;
-    const { name, url, responsible } = req.body;
+    const { name, url, responsible, observations, condition } = req.body;
 
     const updateAnalyzeModule = container.resolve(UpdateAnalyzeModuleService);
 
@@ -49,6 +51,8 @@ export default class AnalysisModuleController {
       name,
       url,
       responsible,
+      observations,
+      condition,
     });
 
     return res.json(analyzeModule);
