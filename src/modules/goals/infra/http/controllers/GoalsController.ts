@@ -25,7 +25,7 @@ export default class GoalsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { name, status, weight } = req.body;
+    const { name, status, weight, source, observations, type } = req.body;
 
     const createGoal = container.resolve(CreateGoalService);
 
@@ -33,6 +33,9 @@ export default class GoalsController {
       name,
       status,
       weight,
+      source,
+      observations,
+      type,
     });
 
     return res.json(goal);
@@ -40,7 +43,7 @@ export default class GoalsController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const { goal_id } = req.query;
-    const { name, status, weight } = req.body;
+    const { name, status, weight, source, observations, type } = req.body;
 
     const updateGoal = container.resolve(UpdateGoalService);
 
@@ -49,6 +52,9 @@ export default class GoalsController {
       name,
       status,
       weight,
+      source,
+      observations,
+      type,
     });
 
     return res.json(goal);

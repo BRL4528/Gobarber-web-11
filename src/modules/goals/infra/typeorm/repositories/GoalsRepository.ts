@@ -50,6 +50,9 @@ class GoalsRepository implements IGoalsRepository {
         name: goal.name,
         status: goal.status,
         weight: goal.weight,
+        source: goal.source,
+        observations: goal.observations,
+        type: goal.type,
       })),
     );
 
@@ -58,11 +61,21 @@ class GoalsRepository implements IGoalsRepository {
     return goalsAll;
   }
 
-  public async create({ name, status, weight }: ICreateGoalDTO): Promise<Goal> {
+  public async create({
+    name,
+    status,
+    weight,
+    source,
+    observations,
+    type,
+  }: ICreateGoalDTO): Promise<Goal> {
     const goal = this.ormRepository.create({
       name,
       status,
       weight,
+      source,
+      observations,
+      type,
     });
 
     await this.ormRepository.save(goal);

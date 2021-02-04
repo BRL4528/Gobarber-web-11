@@ -26,6 +26,15 @@ class Goal {
   @Column()
   weight: string;
 
+  @Column()
+  source: string;
+
+  @Column()
+  observations: string;
+
+  @Column()
+  type: string;
+
   @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.goals)
   @JoinTable()
   goal: GoalOfSector[];

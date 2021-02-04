@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { celebrate, Segments, Joi } from 'celebrate';
+// import { celebrate, Segments, Joi } from 'celebrate';
 import multer from 'multer';
 
 // import ensureAuthenticated from '../middlewares/ensureAuthenticated';
@@ -16,13 +16,13 @@ goalsRouter.get('/', goalsController.index);
 
 goalsRouter.post(
   '/',
-  celebrate({
-    [Segments.BODY]: {
-      name: Joi.string().required(),
-      status: Joi.string().required(),
-      weight: Joi.string().required(),
-    },
-  }),
+  // celebrate({
+  //   [Segments.BODY]: {
+  //     name: Joi.string().required(),
+  //     status: Joi.string().required(),
+  //     weight: Joi.string().required(),
+  //   },
+  // }),
   goalsController.create,
 );
 
