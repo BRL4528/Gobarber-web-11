@@ -10,7 +10,7 @@ interface IRequest {
   sub_goal_id: string;
   name?: string;
   status?: string;
-  weight?: string;
+  weight?: number;
 }
 
 @injectable()

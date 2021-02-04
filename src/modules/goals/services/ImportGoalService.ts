@@ -11,8 +11,8 @@ import Goal from '../infra/typeorm/entities/Goal';
 interface IRequest {
   name: string;
   status: string;
-  weight: string;
-  source: string;
+  weight: number;
+  source: number;
   observations: string;
   type: string;
 }

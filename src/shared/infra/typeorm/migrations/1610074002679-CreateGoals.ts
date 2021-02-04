@@ -23,7 +23,7 @@ export default class CreateGoals1610074002679 implements MigrationInterface {
           },
           {
             name: 'weight',
-            type: 'varchar',
+            type: 'decimal',
           },
           {
             name: 'created_at',

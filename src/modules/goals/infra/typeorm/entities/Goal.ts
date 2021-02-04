@@ -23,11 +23,11 @@ class Goal {
   @Column()
   status: string;
 
-  @Column()
-  weight: string;
+  @Column('decimal')
+  weight: number;
 
-  @Column()
-  source: string;
+  @Column('decimal')
+  source: number;
 
   @Column()
   observations: string;

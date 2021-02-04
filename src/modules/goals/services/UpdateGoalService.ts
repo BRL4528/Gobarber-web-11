@@ -10,8 +10,8 @@ interface IRequest {
   goal_id: string;
   name?: string;
   status?: string;
-  weight?: string;
-  source?: string;
+  weight?: number;
+  source?: number;
   observations?: string;
   type?: string;
 }

@@ -1,8 +1,8 @@
 export default interface ICreateGoalDTO {
   name: string;
   status: string;
-  weight: string;
-  source: string;
+  weight: number;
+  source: number;
   observations: string;
   type: string;
 }

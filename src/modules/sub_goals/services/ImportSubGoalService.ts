@@ -11,7 +11,7 @@ import SubGoal from '../infra/typeorm/entities/SubGoal';
 interface IRequest {
   name: string;
   status: string;
-  weight: string;
+  weight: number;
 }
 
 @injectable()

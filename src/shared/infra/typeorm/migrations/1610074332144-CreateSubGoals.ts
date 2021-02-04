@@ -23,7 +23,7 @@ export default class CreateSubGoals1610074332144 implements MigrationInterface {
           },
           {
             name: 'weight',
-            type: 'varchar',
+            type: 'decimal',
           },
           {
             name: 'created_at',

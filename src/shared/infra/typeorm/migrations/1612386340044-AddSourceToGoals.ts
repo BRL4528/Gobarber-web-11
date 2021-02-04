@@ -7,7 +7,7 @@ export default class AddSourceToGoals1612386340044
       'goals',
       new TableColumn({
         name: 'source',
-        type: 'varchar',
+        type: 'decimal',
         isNullable: true,
       }),
     );
