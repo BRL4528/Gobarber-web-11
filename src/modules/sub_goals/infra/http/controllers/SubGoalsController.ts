@@ -25,7 +25,7 @@ export default class SubGoalsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { name, status, weight } = req.body;
+    const { name, status, weight, observations } = req.body;
 
     const createSubGoal = container.resolve(CreateSubGoalService);
 
@@ -33,6 +33,7 @@ export default class SubGoalsController {
       name,
       status,
       weight,
+      observations,
     });
 
     return res.json(subGoal);
@@ -40,7 +41,7 @@ export default class SubGoalsController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const { sub_goal_id } = req.query;
-    const { name, status, weight } = req.body;
+    const { name, status, weight, observations } = req.body;
 
     const updateSubGoal = container.resolve(UpdateSubGoalService);
 
@@ -49,6 +50,7 @@ export default class SubGoalsController {
       name,
       status,
       weight,
+      observations,
     });
 
     return res.json(subGoal);

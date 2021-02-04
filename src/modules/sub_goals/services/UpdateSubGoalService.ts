@@ -11,6 +11,7 @@ interface IRequest {
   name?: string;
   status?: string;
   weight?: number;
+  observations?: string;
 }
 
 @injectable()
@@ -25,6 +26,7 @@ class UpdateSubGoalService {
     name,
     status,
     weight,
+    observations,
   }: IRequest): Promise<SubGoal> {
     const subGoal = await this.subGoalsRepository.findById(sub_goal_id);
 
@@ -42,6 +44,10 @@ class UpdateSubGoalService {
 
     if (weight) {
       subGoal.weight = weight;
+    }
+
+    if (observations) {
+      subGoal.observations = observations;
     }
 
     return this.subGoalsRepository.save(subGoal);

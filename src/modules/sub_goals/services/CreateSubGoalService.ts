@@ -10,6 +10,7 @@ interface IRequest {
   name: string;
   status: string;
   weight: number;
+  observations: string;
 }
 
 @injectable()
@@ -19,7 +20,12 @@ class CreateSubGoalService {
     private subGoalsRepository: ISubGoalsRepository,
   ) {}
 
-  public async execute({ name, status, weight }: IRequest): Promise<SubGoal> {
+  public async execute({
+    name,
+    status,
+    weight,
+    observations,
+  }: IRequest): Promise<SubGoal> {
     const checkSubGoalsExists = await this.subGoalsRepository.findByName(name);
 
     if (checkSubGoalsExists) {
@@ -30,6 +36,7 @@ class CreateSubGoalService {
       name,
       status,
       weight,
+      observations,
     });
 
     return subGoal;

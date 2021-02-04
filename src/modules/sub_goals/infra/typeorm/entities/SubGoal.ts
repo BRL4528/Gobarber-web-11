@@ -25,6 +25,9 @@ class SubGoal {
   @Column('decimal')
   weight: number;
 
+  @Column()
+  observations: string;
+
   @OneToMany(() => SubGoalOfGoal, subGoalOfGoal => subGoalOfGoal.sub_goals)
   @JoinTable()
   sub_goal: SubGoalOfGoal[];

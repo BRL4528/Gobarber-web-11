@@ -52,6 +52,7 @@ class SubGoalsRepository implements ISubGoalsRepository {
         name: subGoal.name,
         status: subGoal.status,
         weight: subGoal.weight,
+        observations: subGoal.observations,
       })),
     );
 
@@ -64,11 +65,13 @@ class SubGoalsRepository implements ISubGoalsRepository {
     name,
     status,
     weight,
+    observations,
   }: ICreateSubGoalDTO): Promise<SubGoal> {
     const subGoal = this.ormRepository.create({
       name,
       status,
       weight,
+      observations,
     });
 
     await this.ormRepository.save(subGoal);
