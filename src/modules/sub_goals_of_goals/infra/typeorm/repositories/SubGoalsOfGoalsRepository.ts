@@ -5,6 +5,11 @@ import ICreateSubGoalOfGoalDTO from '@modules/sub_goals_of_goals/dtos/ICreateSub
 
 import SubGoalOfGoal from '@modules/sub_goals_of_goals/infra/typeorm/entities/SubGoalOfGoal';
 
+interface ICreateAll {
+  goal_id: string;
+  subGoalsIds: string[];
+}
+
 class SubGoalsOfGoalsRepository implements ISubGoalsOfGoalsRepository {
   private ormRepository: Repository<SubGoalOfGoal>;
 
@@ -58,6 +63,22 @@ class SubGoalsOfGoalsRepository implements ISubGoalsOfGoalsRepository {
     });
 
     return subGoal;
+  }
+
+  public async createAll({
+    goal_id,
+    subGoalsIds,
+  }: ICreateAll): Promise<SubGoalOfGoal[]> {
+    const subGoalsOfGoalsAll = this.ormRepository.create(
+      subGoalsIds.map(subGoalId => ({
+        goal_id,
+        sub_goal_id: subGoalId,
+      })),
+    );
+
+    await this.ormRepository.save(subGoalsOfGoalsAll);
+
+    return subGoalsOfGoalsAll;
   }
 
   public async create({

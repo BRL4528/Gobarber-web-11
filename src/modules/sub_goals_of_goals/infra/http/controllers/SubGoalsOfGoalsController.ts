@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 
 import ShowSubOfGoalService from '@modules/sub_goals_of_goals/services/ShowSubOfGoalService';
 import CreateSubOfGoalService from '@modules/sub_goals_of_goals/services/CreateSubOfGoalService';
+import CreateAllSubOfGoalService from '@modules/sub_goals_of_goals/services/CreateAllSubOfGoalService';
 // import UpdateSubGoalService from '@modules/sub_goals_of_goals/services/UpdateSubGoalService';
 
 export default class SubGoalsOfGoalsController {
@@ -25,6 +26,16 @@ export default class SubGoalsOfGoalsController {
     const subGoalOfGoal = await createSubGoalOfGoal.execute({
       sub_goal_id,
       goal_id,
+    });
+    return res.json(subGoalOfGoal);
+  }
+
+  public async createAll(req: Request, res: Response): Promise<Response> {
+    const { goal_id, subGoalsIds } = req.body;
+    const createSubGoalsOfGoals = container.resolve(CreateAllSubOfGoalService);
+    const subGoalOfGoal = await createSubGoalsOfGoals.execute({
+      goal_id,
+      subGoalsIds,
     });
     return res.json(subGoalOfGoal);
   }

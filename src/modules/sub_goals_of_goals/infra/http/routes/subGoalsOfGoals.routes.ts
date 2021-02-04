@@ -24,6 +24,8 @@ subGoalsOfGoalsRouter.post(
   subGoalsOfGoalsController.create,
 );
 
+subGoalsOfGoalsRouter.post('/create-all', subGoalsOfGoalsController.createAll);
+
 // subGoalsOfGoalsRouter.put('/', subGoalsOfGoalsController.update);
 
 export default subGoalsOfGoalsRouter;
