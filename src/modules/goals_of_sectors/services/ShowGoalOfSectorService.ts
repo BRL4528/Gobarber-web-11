@@ -7,7 +7,8 @@ import IGoalsOfSectorsRepository from '../repositories/IGoalsOfSectorsRepository
 import GoalOfSector from '../infra/typeorm/entities/GoalOfSector';
 
 interface IRequest {
-  sector_id: string;
+  sector_id?: string;
+  goal_id?: string;
 }
 
 @injectable()
@@ -17,16 +18,34 @@ class ShowGoalOfSectorService {
     private goalsOfSectorsRepository: IGoalsOfSectorsRepository,
   ) {}
 
-  public async execute({ sector_id }: IRequest): Promise<GoalOfSector[]> {
-    const goalOfSector = await this.goalsOfSectorsRepository.findAllSectorById(
-      sector_id,
-    );
+  // eslint-disable-next-line consistent-return
+  public async execute({
+    sector_id,
+    goal_id,
+  }: IRequest): Promise<GoalOfSector[] | undefined> {
+    if (sector_id) {
+      const goalOfSector = await this.goalsOfSectorsRepository.findAllSectorById(
+        sector_id,
+      );
 
-    if (!goalOfSector) {
-      throw new AppError('Goals of sectors not exists.');
+      if (!goalOfSector) {
+        throw new AppError('Goals of sectors not exists.');
+      }
+
+      return goalOfSector;
     }
 
-    return goalOfSector;
+    if (goal_id) {
+      const goalOfSector = await this.goalsOfSectorsRepository.findAllGoalById(
+        goal_id,
+      );
+
+      if (!goalOfSector) {
+        throw new AppError('Goals of sectors not exists.');
+      }
+
+      return goalOfSector;
+    }
   }
 }
 

@@ -8,12 +8,13 @@ import CreateGoalOfSectorService from '@modules/goals_of_sectors/services/Create
 
 export default class GoalsOfSectorsController {
   public async show(req: Request, res: Response): Promise<Response> {
-    const { sector_id } = req.query;
+    const { sector_id, goal_id } = req.query;
 
     const showGoalOfSector = container.resolve(ShowGoalOfSectorService);
 
     const goalOfSector = await showGoalOfSector.execute({
-      sector_id: String(sector_id),
+      sector_id: sector_id ? String(sector_id) : undefined,
+      goal_id: goal_id ? String(goal_id) : undefined,
     });
 
     return res.json(goalOfSector);
