@@ -3,7 +3,7 @@ import ICreateSubGoalOfGoalDTO from '../dtos/ICreateSubGoalOfGoalDTO';
 
 interface ICreateAll {
   goal_id: string;
-  subGoalsIds: string[];
+  sub_goals_ids: string[];
 }
 
 export default interface ISubGoalsOfGoalsRepository {
@@ -12,6 +12,6 @@ export default interface ISubGoalsOfGoalsRepository {
   findAllGoalById(goal_id: string): Promise<SubGoalOfGoal[] | undefined>;
   findAllSubGoalById(sub_goal_id: string): Promise<SubGoalOfGoal[] | undefined>;
   create(data: ICreateSubGoalOfGoalDTO): Promise<SubGoalOfGoal>;
-  createAll({ goal_id, subGoalsIds }: ICreateAll): Promise<SubGoalOfGoal[]>;
+  createAll({ goal_id, sub_goals_ids }: ICreateAll): Promise<SubGoalOfGoal[]>;
   save(sub_goal_of_goal: SubGoalOfGoal): Promise<SubGoalOfGoal>;
 }

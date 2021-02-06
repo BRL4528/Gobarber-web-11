@@ -24,7 +24,7 @@ class AnalyzeModuleOfGoal {
   // @JoinColumn({ name: 'sector_id' })
   // sector: Sector;
 
-  @ManyToOne(() => Goal, goal => goal.analyze_module_of_goal)
+  @ManyToOne(() => Goal, goal => goal.analyze_module_of_goal, { eager: true })
   @JoinColumn({ name: 'goal_id' })
   goal: Goal;
 

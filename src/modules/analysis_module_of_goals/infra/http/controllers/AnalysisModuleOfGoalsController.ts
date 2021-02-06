@@ -2,22 +2,24 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 // import { classToClass } from 'class-transformer';
 
-// import ShowGoalOfSectorService from '@modules/analysis_module_of_goals/services/ShowGoalOfSectorService';
+import ShowAnalyzeModuleOfGoalService from '@modules/analysis_module_of_goals/services/ShowAnalyzeModuleOfGoalService';
 import CreateAnalyzeModuleOfGoalService from '@modules/analysis_module_of_goals/services/CreateAnalyzeModuleOfGoalService';
 // import UpdateSubGoalService from '@modules/goals_of_sectors/services/UpdateSubGoalService';
 
 export default class AnalysisModuleOfGoalsController {
-  // public async show(req: Request, res: Response): Promise<Response> {
-  //   const { analyze_module_id } = req.query;
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { analyze_module_id } = req.query;
 
-  //   const showGoalOfSector = container.resolve(ShowGoalOfSectorService);
+    const showAnalyzeModuleOfGoal = container.resolve(
+      ShowAnalyzeModuleOfGoalService,
+    );
 
-  //   const goalOfSector = await showGoalOfSector.execute({
-  //     analyze_module_id: String(analyze_module_id),
-  //   });
+    const analyzeModuleOfGoal = await showAnalyzeModuleOfGoal.execute({
+      analyze_module_id: String(analyze_module_id),
+    });
 
-  //   return res.json(goalOfSector);
-  // }
+    return res.json(analyzeModuleOfGoal);
+  }
 
   public async create(req: Request, res: Response): Promise<Response> {
     const { goal_id, analyze_module_id } = req.body;

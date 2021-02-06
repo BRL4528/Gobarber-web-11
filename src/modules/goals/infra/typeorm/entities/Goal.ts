@@ -48,9 +48,6 @@ class Goal {
   @OneToMany(
     () => AnalyzeModuleOfGoal,
     analyzeModuleOfGoal => analyzeModuleOfGoal.goal,
-    {
-      eager: true,
-    },
   )
   @JoinTable()
   analyze_module_of_goal: AnalyzeModuleOfGoal;

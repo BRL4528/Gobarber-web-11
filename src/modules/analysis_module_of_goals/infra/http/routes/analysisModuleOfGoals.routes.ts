@@ -9,7 +9,7 @@ const analysisModuleOfGoalsController = new AnalysisModuleOfGoalsController();
 
 const analysisModuleOfGoalsRouter = Router();
 
-// analysisModuleOfGoalsRouter.get('/', analysisModuleOfGoalsController.show);
+analysisModuleOfGoalsRouter.get('/', analysisModuleOfGoalsController.show);
 
 analysisModuleOfGoalsRouter.post(
   '/',

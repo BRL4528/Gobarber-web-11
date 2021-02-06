@@ -8,7 +8,7 @@ import SubGoalOfGoal from '../infra/typeorm/entities/SubGoalOfGoal';
 
 interface IRequest {
   goal_id: string;
-  subGoalsIds: string[];
+  sub_goals_ids: string[];
 }
 
 @injectable()
@@ -20,7 +20,7 @@ class CreateAllSubOfGoalService {
 
   public async execute({
     goal_id,
-    subGoalsIds,
+    sub_goals_ids,
   }: IRequest): Promise<SubGoalOfGoal[]> {
     // const checkSectorExists = await this.subGoalsOfGoalsRepository.findByName(
     //   name,
@@ -32,7 +32,7 @@ class CreateAllSubOfGoalService {
 
     const subGoalsOfGoals = await this.subGoalsOfGoalsRepository.createAll({
       goal_id,
-      subGoalsIds,
+      sub_goals_ids,
     });
 
     return subGoalsOfGoals;
