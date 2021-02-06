@@ -16,13 +16,13 @@ class GoalOfSector {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @ManyToOne(() => Sector, sector => sector.goals_of_sectors, { eager: true })
+  @JoinColumn({ name: 'sector_id' })
+  sector: Sector;
+
   @ManyToOne(() => Goal, goal => goal.goal, { eager: true })
   @JoinColumn({ name: 'goal_id' })
   goals: Goal[];
-
-  @ManyToOne(() => Sector, sector => sector.goals_of_sectors)
-  @JoinColumn({ name: 'sector_id' })
-  sector: Sector;
 
   @Column()
   goal_id: string;

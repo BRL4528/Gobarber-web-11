@@ -21,9 +21,7 @@ class Sector {
   @Column()
   leader: string;
 
-  @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.sector, {
-    eager: true,
-  })
+  @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.sector)
   @JoinTable()
   goals_of_sectors: GoalOfSector[];
 
