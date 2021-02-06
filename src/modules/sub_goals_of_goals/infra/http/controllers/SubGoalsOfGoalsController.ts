@@ -32,6 +32,9 @@ export default class SubGoalsOfGoalsController {
 
   public async createAll(req: Request, res: Response): Promise<Response> {
     const { goal_id, sub_goals_ids } = req.body;
+
+    console.log(sub_goals_ids);
+
     const createSubGoalsOfGoals = container.resolve(CreateAllSubOfGoalService);
     const subGoalOfGoal = await createSubGoalsOfGoals.execute({
       goal_id,

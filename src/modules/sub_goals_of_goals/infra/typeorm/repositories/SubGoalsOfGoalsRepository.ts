@@ -7,7 +7,7 @@ import SubGoalOfGoal from '@modules/sub_goals_of_goals/infra/typeorm/entities/Su
 
 interface ICreateAll {
   goal_id: string;
-  subGoalsIds: string[];
+  sub_goals_ids: string[];
 }
 
 class SubGoalsOfGoalsRepository implements ISubGoalsOfGoalsRepository {
@@ -67,10 +67,10 @@ class SubGoalsOfGoalsRepository implements ISubGoalsOfGoalsRepository {
 
   public async createAll({
     goal_id,
-    subGoalsIds,
+    sub_goals_ids,
   }: ICreateAll): Promise<SubGoalOfGoal[]> {
     const subGoalsOfGoalsAll = this.ormRepository.create(
-      subGoalsIds.map(subGoalId => ({
+      sub_goals_ids.map(subGoalId => ({
         goal_id,
         sub_goal_id: subGoalId,
       })),
