@@ -7,7 +7,7 @@ import ISectorsRepository from '../repositories/ISectorsRepository';
 import Sector from '../infra/typeorm/entities/Sector';
 
 @injectable()
-class CreateSectorService {
+class ListSectorService {
   constructor(
     @inject('SectorsRepository')
     private sectorsRepository: ISectorsRepository,
@@ -20,4 +20,4 @@ class CreateSectorService {
   }
 }
 
-export default CreateSectorService;
+export default ListSectorService;

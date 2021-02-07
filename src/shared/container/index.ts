@@ -36,6 +36,9 @@ import AnalysisModuleOfGoalsRepository from '@modules/analysis_module_of_goals/i
 import IResultsOfSubGoalsRepository from '@modules/results_of_sub_goals/repositories/IResultsOfSubGoalsRepository';
 import ResultsOfSubGoalsRepository from '@modules/results_of_sub_goals/infra/typeorm/repositories/ResultsOfSubGoalsRepository';
 
+import ITasksRepository from '@modules/tasks/repositories/ITasksRepository';
+import TasksRepository from '@modules/tasks/infra/typeorm/repositories/TasksRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -89,4 +92,9 @@ container.registerSingleton<IAnalysisModuleOfGoalsRepository>(
 container.registerSingleton<IResultsOfSubGoalsRepository>(
   'ResultsOfSubGoalsRepository',
   ResultsOfSubGoalsRepository,
+);
+
+container.registerSingleton<ITasksRepository>(
+  'TasksRepository',
+  TasksRepository,
 );

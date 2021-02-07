@@ -13,6 +13,7 @@ import generateTokenBIRouter from '@modules/generate_token_bi/infra/http/routes/
 import analysisModuleRouter from '@modules/analysis_module/infra/http/routes/analysisModule.routes';
 import analysisModuleOfGoalsRouter from '@modules/analysis_module_of_goals/infra/http/routes/analysisModuleOfGoals.routes';
 import resultsOfSubGoalsRouter from '@modules/results_of_sub_goals/infra/http/routes/resultsOfSubGoals.routes';
+import tasksRouter from '@modules/tasks/infra/http/routes/tasks.routes';
 
 const routes = Router();
 
@@ -30,5 +31,6 @@ routes.use('/getEmbedToken', generateTokenBIRouter);
 routes.use('/analysis-module', analysisModuleRouter);
 routes.use('/analysis-module-of-goals', analysisModuleOfGoalsRouter);
 routes.use('/results-of-sub-goals', resultsOfSubGoalsRouter);
+routes.use('/tasks', tasksRouter);
 
 export default routes;
