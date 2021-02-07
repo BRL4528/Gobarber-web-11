@@ -22,8 +22,6 @@ class CreateAllGoalOfSectorService {
     sector_id,
     goals_ids,
   }: IRequest): Promise<GoalOfSector[]> {
-    console.log(sector_id, goals_ids);
-
     // const checkSectorExists = await this.subGoalsOfGoalsRepository.findByName(
     //   name,
     // );

@@ -1,16 +1,16 @@
 import { Router } from 'express';
 // import { celebrate, Segments, Joi } from 'celebrate';
-import multer from 'multer';
+// import multer from 'multer';
 
 // import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
-import uploadConfig from '@config/upload';
+// import uploadConfig from '@config/upload';
 import ResultsOfSubGoalsController from '../controllers/ResultsOfSubGoalsController';
 
 const resultsOfSubGoalsController = new ResultsOfSubGoalsController();
 
 const resultsOfSubGoalsRouter = Router();
-const upload = multer(uploadConfig);
+// const upload = multer(uploadConfig);
 
 resultsOfSubGoalsRouter.get('/', resultsOfSubGoalsController.index);
 
@@ -26,12 +26,17 @@ resultsOfSubGoalsRouter.post(
   resultsOfSubGoalsController.create,
 );
 
+// resultsOfSubGoalsRouter.post(
+//   '/import',
+//   upload.single('file'),
+//   resultsOfSubGoalsController.import,
+// );
+
 resultsOfSubGoalsRouter.post(
-  '/import',
-  upload.single('file'),
-  resultsOfSubGoalsController.import,
+  '/create-all',
+  resultsOfSubGoalsController.createAll,
 );
 
-resultsOfSubGoalsRouter.put('/', resultsOfSubGoalsController.update);
+// resultsOfSubGoalsRouter.put('/', resultsOfSubGoalsController.update);
 
 export default resultsOfSubGoalsRouter;

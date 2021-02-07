@@ -76,8 +76,6 @@ class GoalsOfSectorsRepository implements IGoalsOfSectorsRepository {
       })),
     );
 
-    console.log(goalsOfSectorsAll);
-
     await this.ormRepository.save(goalsOfSectorsAll);
 
     return goalsOfSectorsAll;
