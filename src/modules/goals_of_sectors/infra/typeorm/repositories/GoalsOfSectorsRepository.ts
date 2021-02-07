@@ -5,6 +5,11 @@ import ICreateGoalOfSectorDTO from '@modules/goals_of_sectors/dtos/ICreateGoalOf
 
 import GoalOfSector from '@modules/goals_of_sectors/infra/typeorm/entities/GoalOfSector';
 
+interface ICreateAll {
+  sector_id: string;
+  goals_ids: string[];
+}
+
 class GoalsOfSectorsRepository implements IGoalsOfSectorsRepository {
   private ormRepository: Repository<GoalOfSector>;
 
@@ -58,6 +63,24 @@ class GoalsOfSectorsRepository implements IGoalsOfSectorsRepository {
     });
 
     return goalOfSector;
+  }
+
+  public async createAll({
+    sector_id,
+    goals_ids,
+  }: ICreateAll): Promise<GoalOfSector[]> {
+    const goalsOfSectorsAll = this.ormRepository.create(
+      goals_ids.map(goalId => ({
+        sector_id,
+        goal_id: goalId,
+      })),
+    );
+
+    console.log(goalsOfSectorsAll);
+
+    await this.ormRepository.save(goalsOfSectorsAll);
+
+    return goalsOfSectorsAll;
   }
 
   public async create({

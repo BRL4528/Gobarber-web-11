@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 
 import ShowGoalOfSectorService from '@modules/goals_of_sectors/services/ShowGoalOfSectorService';
 import CreateGoalOfSectorService from '@modules/goals_of_sectors/services/CreateGoalOfSectorService';
-// import UpdateSubGoalService from '@modules/goals_of_sectors/services/UpdateSubGoalService';
+import CreateAllGoalOfSectorService from '@modules/goals_of_sectors/services/CreateAllGoalOfSectorService';
 
 export default class GoalsOfSectorsController {
   public async show(req: Request, res: Response): Promise<Response> {
@@ -26,6 +26,19 @@ export default class GoalsOfSectorsController {
     const goalOfSector = await createGoalOfSector.execute({
       goal_id,
       sector_id,
+    });
+    return res.json(goalOfSector);
+  }
+
+  public async createAll(req: Request, res: Response): Promise<Response> {
+    const { sector_id, goals_ids } = req.body;
+
+    const createGoalsOfSectors = container.resolve(
+      CreateAllGoalOfSectorService,
+    );
+    const goalOfSector = await createGoalsOfSectors.execute({
+      sector_id,
+      goals_ids,
     });
     return res.json(goalOfSector);
   }
