@@ -14,6 +14,7 @@ import analysisModuleRouter from '@modules/analysis_module/infra/http/routes/ana
 import analysisModuleOfGoalsRouter from '@modules/analysis_module_of_goals/infra/http/routes/analysisModuleOfGoals.routes';
 import resultsOfSubGoalsRouter from '@modules/results_of_sub_goals/infra/http/routes/resultsOfSubGoals.routes';
 import tasksRouter from '@modules/tasks/infra/http/routes/tasks.routes';
+import tasksOfSubGoalsRouter from '@modules/tasks_of_sub_goals/infra/http/routes/tasksOfSubGoals.routes';
 
 const routes = Router();
 
@@ -32,5 +33,6 @@ routes.use('/analysis-module', analysisModuleRouter);
 routes.use('/analysis-module-of-goals', analysisModuleOfGoalsRouter);
 routes.use('/results-of-sub-goals', resultsOfSubGoalsRouter);
 routes.use('/tasks', tasksRouter);
+routes.use('/tasks-of-sub-goals', tasksOfSubGoalsRouter);
 
 export default routes;

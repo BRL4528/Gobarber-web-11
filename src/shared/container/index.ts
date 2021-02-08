@@ -39,6 +39,9 @@ import ResultsOfSubGoalsRepository from '@modules/results_of_sub_goals/infra/typ
 import ITasksRepository from '@modules/tasks/repositories/ITasksRepository';
 import TasksRepository from '@modules/tasks/infra/typeorm/repositories/TasksRepository';
 
+import ITasksOfSubGoalsRepository from '@modules/tasks_of_sub_goals/repositories/ITasksOfSubGoalsRepository';
+import TasksOfSubGoalsRepository from '@modules/tasks_of_sub_goals/infra/typeorm/repositories/TasksOfSubGoalsRepository';
+
 container.registerSingleton<IAccessesRepository>(
   'AccessesRepository',
   AccessesRepository,
@@ -97,4 +100,9 @@ container.registerSingleton<IResultsOfSubGoalsRepository>(
 container.registerSingleton<ITasksRepository>(
   'TasksRepository',
   TasksRepository,
+);
+
+container.registerSingleton<ITasksOfSubGoalsRepository>(
+  'TasksOfSubGoalsRepository',
+  TasksOfSubGoalsRepository,
 );
