@@ -16,7 +16,9 @@ class SubGoalOfGoal {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => SubGoal, subGoal => subGoal.sub_goal, { eager: true })
+  @ManyToOne(() => SubGoal, subGoal => subGoal.sub_goals_of_goals, {
+    eager: true,
+  })
   @JoinColumn({ name: 'sub_goal_id' })
   sub_goals: SubGoal[];
 

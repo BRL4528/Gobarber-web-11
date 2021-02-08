@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 
 // import ShowSubOfGoalService from '@modules/tasks_of_sub_goals/services/ShowSubOfGoalService';
 import CreateTaskOfSubGoalService from '@modules/tasks_of_sub_goals/services/CreateTaskOfSubGoalService';
-// import CreateAllSubOfGoalService from '@modules/tasks_of_sub_goals/services/CreateAllSubOfGoalService';
+import CreateAllTaskOfSubGoalService from '@modules/tasks_of_sub_goals/services/CreateAllTaskOfSubGoalService';
 // import UpdateSubGoalService from '@modules/sub_goals_of_goals/services/UpdateSubGoalService';
 
 export default class TasksOfSubGoalsController {
@@ -30,16 +30,18 @@ export default class TasksOfSubGoalsController {
     return res.json(taskOfSubGoal);
   }
 
-  // public async createAll(req: Request, res: Response): Promise<Response> {
-  //   const { goal_id, sub_goals_ids } = req.body;
+  public async createAll(req: Request, res: Response): Promise<Response> {
+    const { sub_goal_id, tasks_ids } = req.body;
 
-  //   const createSubGoalsOfGoals = container.resolve(CreateAllSubOfGoalService);
-  //   const subGoalOfGoal = await createSubGoalsOfGoals.execute({
-  //     goal_id,
-  //     sub_goals_ids,
-  //   });
-  //   return res.json(subGoalOfGoal);
-  // }
+    const createTasksOfSubGoals = container.resolve(
+      CreateAllTaskOfSubGoalService,
+    );
+    const taskOfSubGoal = await createTasksOfSubGoals.execute({
+      sub_goal_id,
+      tasks_ids,
+    });
+    return res.json(taskOfSubGoal);
+  }
   // public async update(req: Request, res: Response): Promise<Response> {
   //   const { sub_goal_id } = req.query;
   //   const { name, status, weight } = req.body;

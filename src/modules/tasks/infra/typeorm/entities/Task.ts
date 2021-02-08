@@ -2,12 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  // JoinTable,
-  // OneToMany,
+  JoinTable,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
+import TaskOfSubGoal from '@modules/tasks_of_sub_goals/infra/typeorm/entities/TaskOfSubGoal';
 // import GoalOfSector from '@modules/goals_of_sectors/infra/typeorm/entities/GoalOfSector';
 
 @Entity('tasks')
@@ -24,9 +25,11 @@ class Task {
   @Column()
   observations: string;
 
-  // @OneToMany(() => GoalOfSector, goalOfSector => goalOfSector.sector)
-  // @JoinTable()
-  // goals_of_sectors: GoalOfSector[];
+  @OneToMany(() => TaskOfSubGoal, taskOfSubGoal => taskOfSubGoal.task, {
+    eager: true,
+  })
+  @JoinTable()
+  tasks_of_sub_goals: TaskOfSubGoal[];
 
   @CreateDateColumn()
   created_at: Date;

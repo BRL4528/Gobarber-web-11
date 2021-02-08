@@ -2,27 +2,27 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  // JoinColumn,
-  // ManyToOne,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-// import Goal from '@modules/goals/infra/typeorm/entities/Goal';
-// import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
+import SubGoal from '@modules/sub_goals/infra/typeorm/entities/SubGoal';
+import Task from '@modules/tasks/infra/typeorm/entities/Task';
 
 @Entity('tasks_of_sub_goals')
 class TaskOfSubGoal {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // @ManyToOne(() => Goal, goal => goal.sub_goals_of_goals)
-  // @JoinColumn({ name: 'task_id' })
-  // goal: Goal;
+  @ManyToOne(() => Task, task => task.tasks_of_sub_goals)
+  @JoinColumn({ name: 'task_id' })
+  task: Task;
 
-  // @ManyToOne(() => SubGoal, subGoal => subGoal.sub_goal, { eager: true })
-  // @JoinColumn({ name: 'sub_goal_id' })
-  // sub_goals: SubGoal[];
+  @ManyToOne(() => SubGoal, subGoal => subGoal.tasks_of_sub_goals)
+  @JoinColumn({ name: 'sub_goal_id' })
+  sub_goals: SubGoal;
 
   @Column()
   task_id: string;

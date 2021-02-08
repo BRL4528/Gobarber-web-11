@@ -24,7 +24,7 @@ tasksOfSubGoalsRouter.post(
   tasksOfSubGoalsController.create,
 );
 
-// tasksOfSubGoalsRouter.post('/create-all', tasksOfSubGoalsController.createAll);
+tasksOfSubGoalsRouter.post('/create-all', tasksOfSubGoalsController.createAll);
 
 // tasksOfSubGoalsRouter.put('/', tasksOfSubGoalsController.update);
 
