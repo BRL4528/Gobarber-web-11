@@ -11,6 +11,7 @@ import {
 import SubGoalOfGoal from '@modules/sub_goals_of_goals/infra/typeorm/entities/SubGoalOfGoal';
 import GoalOfSector from '@modules/goals_of_sectors/infra/typeorm/entities/GoalOfSector';
 import AnalyzeModuleOfGoal from '@modules/analysis_module_of_goals/infra/typeorm/entities/AnalyzeModuleOfGoal';
+import ResultOfSubGoal from '@modules/results_of_sub_goals/infra/typeorm/entities/ResultOfSubGoal';
 
 @Entity('goals')
 class Goal {
@@ -51,6 +52,12 @@ class Goal {
   )
   @JoinTable()
   analyze_module_of_goal: AnalyzeModuleOfGoal;
+
+  @OneToMany(() => ResultOfSubGoal, resultOfSubGoal => resultOfSubGoal.goal, {
+    eager: true,
+  })
+  @JoinTable()
+  result_of_sub_goal: ResultOfSubGoal;
 
   @CreateDateColumn()
   created_at: Date;
