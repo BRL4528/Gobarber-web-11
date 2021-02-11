@@ -8,6 +8,8 @@ import ResultOfSubGoal from '../infra/typeorm/entities/ResultOfSubGoal';
 
 interface ICreateAll {
   sub_goal_id: string;
+  goal_id: string;
+  sector_id: string;
   result: string;
 }
 

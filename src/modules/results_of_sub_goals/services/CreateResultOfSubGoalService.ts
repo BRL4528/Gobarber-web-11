@@ -9,6 +9,8 @@ import ResultOfSubGoal from '../infra/typeorm/entities/ResultOfSubGoal';
 interface IRequest {
   result: string;
   sub_goal_id: string;
+  goal_id: string;
+  sector_id: string;
 }
 
 @injectable()
@@ -21,6 +23,8 @@ class CreateResultOfSubGoalService {
   public async execute({
     result,
     sub_goal_id,
+    goal_id,
+    sector_id,
   }: IRequest): Promise<ResultOfSubGoal> {
     // const checkGoalsExists = await this.goalsRepository.findByName(result);
 
@@ -31,6 +35,8 @@ class CreateResultOfSubGoalService {
     const createdResult = await this.resultsOfSubGoalsRepository.create({
       result,
       sub_goal_id,
+      goal_id,
+      sector_id,
     });
 
     return createdResult;

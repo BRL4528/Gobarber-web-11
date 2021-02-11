@@ -7,6 +7,8 @@ import ResultOfSubGoal from '@modules/results_of_sub_goals/infra/typeorm/entitie
 
 interface ICreateAll {
   sub_goal_id: string;
+  goal_id: string;
+  sector_id: string;
   result: string;
 }
 
@@ -55,6 +57,8 @@ class ResultsOfSubGoalsRepository implements IResultsOfSubGoalsRepository {
     const resultsOfSubGoalsAll = this.ormRepository.create(
       results_of_sub_goals.map(resultOfGoal => ({
         sub_goal_id: resultOfGoal.sub_goal_id,
+        goal_id: resultOfGoal.goal_id,
+        sector_id: resultOfGoal.sector_id,
         result: resultOfGoal.result,
       })),
     );
@@ -67,10 +71,14 @@ class ResultsOfSubGoalsRepository implements IResultsOfSubGoalsRepository {
   public async create({
     result,
     sub_goal_id,
+    goal_id,
+    sector_id,
   }: ICreateResultOfSubGoalDTO): Promise<ResultOfSubGoal> {
     const createdResult = this.ormRepository.create({
       result,
       sub_goal_id,
+      goal_id,
+      sector_id,
     });
 
     await this.ormRepository.save(createdResult);

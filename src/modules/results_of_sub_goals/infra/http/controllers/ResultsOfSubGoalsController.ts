@@ -26,7 +26,7 @@ export default class ResultsOfSubGoalsController {
   // }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { result, sub_goal_id } = req.body;
+    const { result, sub_goal_id, goal_id, sector_id } = req.body;
 
     const createResultOfSubGoal = container.resolve(
       CreateResultOfSubGoalService,
@@ -35,6 +35,8 @@ export default class ResultsOfSubGoalsController {
     const resultOfSubGoal = await createResultOfSubGoal.execute({
       result,
       sub_goal_id,
+      goal_id,
+      sector_id,
     });
 
     return res.json(resultOfSubGoal);

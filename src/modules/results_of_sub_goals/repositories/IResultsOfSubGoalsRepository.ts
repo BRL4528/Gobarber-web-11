@@ -3,6 +3,8 @@ import ICreateResultOfSubGoalDTO from '../dtos/ICreateResultOfSubGoalDTO';
 
 interface ICreateAll {
   sub_goal_id: string;
+  goal_id: string;
+  sector_id: string;
   result: string;
 }
 
