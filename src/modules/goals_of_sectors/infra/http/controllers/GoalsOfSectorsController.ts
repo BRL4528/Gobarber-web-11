@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import ShowGoalOfSectorService from '@modules/goals_of_sectors/services/ShowGoalOfSectorService';
 import CreateGoalOfSectorService from '@modules/goals_of_sectors/services/CreateGoalOfSectorService';
 import CreateAllGoalOfSectorService from '@modules/goals_of_sectors/services/CreateAllGoalOfSectorService';
+import UpdateGoalOfSectorService from '@modules/goals_of_sectors/services/UpdateGoalOfSectorService';
 
 export default class GoalsOfSectorsController {
   public async show(req: Request, res: Response): Promise<Response> {
@@ -42,16 +43,15 @@ export default class GoalsOfSectorsController {
     });
     return res.json(goalOfSector);
   }
-  // public async update(req: Request, res: Response): Promise<Response> {
-  //   const { sub_goal_id } = req.query;
-  //   const { name, status, weight } = req.body;
-  //   const updateSubGoal = container.resolve(UpdateSubGoalService);
-  //   const subGoal = await updateSubGoal.execute({
-  //     sub_goal_id: String(sub_goal_id),
-  //     name,
-  //     status,
-  //     weight,
-  //   });
-  //   return res.json(subGoal);
-  // }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { goal_of_sector_id } = req.query;
+    const { status_of_conclusion } = req.body;
+    const updateGoalOfSector = container.resolve(UpdateGoalOfSectorService);
+    const goalOfSector = await updateGoalOfSector.execute({
+      goal_of_sector_id: String(goal_of_sector_id),
+      status_of_conclusion,
+    });
+    return res.json(goalOfSector);
+  }
 }

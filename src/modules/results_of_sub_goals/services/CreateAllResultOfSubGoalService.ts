@@ -3,15 +3,9 @@ import { injectable, inject } from 'tsyringe';
 // import AppError from '@shared/errors/AppError';
 // import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IResultsOfSubGoalsRepository from '../repositories/IResultsOfSubGoalsRepository';
+import ICreateResultOfSubGoalDTO from '../dtos/ICreateResultOfSubGoalDTO';
 
 import ResultOfSubGoal from '../infra/typeorm/entities/ResultOfSubGoal';
-
-interface ICreateAll {
-  sub_goal_id: string;
-  goal_id: string;
-  sector_id: string;
-  result: string;
-}
 
 @injectable()
 class CreateAllResultOfSubGoalService {
@@ -21,7 +15,7 @@ class CreateAllResultOfSubGoalService {
   ) {}
 
   public async execute(
-    results_of_sub_goals: ICreateAll[],
+    results_of_sub_goals: ICreateResultOfSubGoalDTO[],
   ): Promise<ResultOfSubGoal[]> {
     // const checkSectorExists = await this.subGoalsOfGoalsRepository.findByName(
     //   name,

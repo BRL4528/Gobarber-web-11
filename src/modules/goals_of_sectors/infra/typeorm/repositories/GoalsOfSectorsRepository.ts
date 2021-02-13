@@ -33,6 +33,16 @@ class GoalsOfSectorsRepository implements IGoalsOfSectorsRepository {
   //   return subGoals;
   // }
 
+  public async findById(id: string): Promise<GoalOfSector | undefined> {
+    const goalOfSector = await this.ormRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    return goalOfSector;
+  }
+
   public async findAllSectorById(
     sector_id: string,
   ): Promise<GoalOfSector[] | undefined> {

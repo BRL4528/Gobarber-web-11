@@ -24,6 +24,8 @@ goalsOfSectorsRouter.post(
   goalsOfSectorsController.create,
 );
 
+goalsOfSectorsRouter.put('/', goalsOfSectorsController.update);
+
 goalsOfSectorsRouter.post('/create-all', goalsOfSectorsController.createAll);
 
 export default goalsOfSectorsRouter;

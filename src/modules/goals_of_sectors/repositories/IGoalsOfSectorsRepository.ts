@@ -7,8 +7,8 @@ interface ICreateAll {
 }
 
 export default interface IGoalsOfSectorsRepository {
-  // findAllByIdSubGoals(goalsIds: string[]): Promise<SubGoal[]>;
   // findAll(): Promise<GoalOfSector[] | undefined>;
+  findById(id: string): Promise<GoalOfSector | undefined>;
   findAllSectorById(sector_id: string): Promise<GoalOfSector[] | undefined>;
   findAllGoalById(goal_id: string): Promise<GoalOfSector[] | undefined>;
   create(data: ICreateGoalOfSectorDTO): Promise<GoalOfSector>;

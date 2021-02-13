@@ -5,13 +5,6 @@ import ICreateResultOfSubGoalDTO from '@modules/results_of_sub_goals/dtos/ICreat
 
 import ResultOfSubGoal from '@modules/results_of_sub_goals/infra/typeorm/entities/ResultOfSubGoal';
 
-interface ICreateAll {
-  sub_goal_id: string;
-  goal_id: string;
-  sector_id: string;
-  result: string;
-}
-
 class ResultsOfSubGoalsRepository implements IResultsOfSubGoalsRepository {
   private ormRepository: Repository<ResultOfSubGoal>;
 
@@ -52,7 +45,7 @@ class ResultsOfSubGoalsRepository implements IResultsOfSubGoalsRepository {
   // }
 
   public async createAll(
-    results_of_sub_goals: ICreateAll[],
+    results_of_sub_goals: ICreateResultOfSubGoalDTO[],
   ): Promise<ResultOfSubGoal[]> {
     const resultsOfSubGoalsAll = this.ormRepository.create(
       results_of_sub_goals.map(resultOfGoal => ({

@@ -30,6 +30,9 @@ class GoalOfSector {
   @Column()
   sector_id: string;
 
+  @Column('boolean')
+  status_of_conclusion: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
