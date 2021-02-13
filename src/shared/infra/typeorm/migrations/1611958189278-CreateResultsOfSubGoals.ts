@@ -16,7 +16,7 @@ export default class CreateResultsOfSubGoals1611958189278
           },
           {
             name: 'result',
-            type: 'varchar',
+            type: 'boolean',
           },
           {
             name: 'sub_goal_id',

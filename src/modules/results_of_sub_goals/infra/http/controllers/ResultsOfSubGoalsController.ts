@@ -43,7 +43,7 @@ export default class ResultsOfSubGoalsController {
   }
 
   public async createAll(req: Request, res: Response): Promise<Response> {
-    const { results_of_sub_goals } = req.body;
+    const results_of_sub_goals = req.body;
 
     const createResultsOfSubGoals = container.resolve(
       CreateAllResultOfSubGoalService,

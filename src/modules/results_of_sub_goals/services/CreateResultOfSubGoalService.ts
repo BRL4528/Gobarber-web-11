@@ -7,7 +7,7 @@ import IResultsOfSubGoalsRepository from '../repositories/IResultsOfSubGoalsRepo
 import ResultOfSubGoal from '../infra/typeorm/entities/ResultOfSubGoal';
 
 interface IRequest {
-  result: string;
+  result: boolean;
   sub_goal_id: string;
   goal_id: string;
   sector_id: string;

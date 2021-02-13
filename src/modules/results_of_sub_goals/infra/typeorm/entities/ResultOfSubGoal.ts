@@ -17,8 +17,8 @@ class ResultOfSubGoal {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  result: string;
+  @Column('boolean')
+  result: boolean;
 
   @ManyToOne(() => SubGoal, subGoal => subGoal.result_of_sub_goal)
   @JoinColumn({ name: 'sub_goal_id' })
