@@ -15,7 +15,7 @@ const config = {
   apiUrl: 'https://api.powerbi.com/',
   clientId: '40d54442-242d-4227-9cfb-94ac641607e5',
   workspaceId: '9ab7f913-45e8-4e73-abf4-33ff01c21f9f',
-  reportId: 'c6216fce-c528-4600-b8f0-3510d25b0ce8',
+  // reportId: 'c6216fce-c528-4600-b8f0-3510d25b0ce8',
   pbiUsername: 'pbiembed@brunoguimaraescarvalhosgoho.onmicrosoft.com',
   pbiPassword: 'C00asgo@',
   clientSecret: '46yxgLE095Ze.mBsq09BA.5fM4BeLHv0__',
@@ -25,13 +25,13 @@ const config = {
 class AuthenticateGenerateTokenBIService {
   // eslint-disable-next-line consistent-return
 
-  public async getEmbedInfo() {
+  public async getEmbedInfo(reportId: string) {
     // Get the Report Embed details
     try {
       // Get report details and embed token
       const embedParams = await this.getEmbedParamsForSingleReport(
         config.workspaceId,
-        config.reportId,
+        reportId,
       );
 
       return {
