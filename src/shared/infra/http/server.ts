@@ -16,11 +16,7 @@ import '@shared/container';
 
 const app = express();
 
-app.use(cors({
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        preflightContinue: false,
-        optionsSuccessStatus: 204,
-}));
+app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 // app.use(rateLimiter);
