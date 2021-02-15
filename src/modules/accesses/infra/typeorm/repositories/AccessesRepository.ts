@@ -45,8 +45,6 @@ class AccessesRepository implements IAccessesRepository {
   }
 
   public async create(accessData: ICreateAccessDTO): Promise<Access> {
-    console.log(accessData);
-
     const access = this.ormRepository.create(accessData);
 
     await this.ormRepository.save(access);
