@@ -18,7 +18,6 @@ const app = express();
 
 const corsOptions = {
   origin: 'https://samasc.cloud/',
-  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
