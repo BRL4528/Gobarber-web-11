@@ -16,11 +16,7 @@ import '@shared/container';
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://samasc.cloud/',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
