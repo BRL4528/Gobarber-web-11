@@ -16,7 +16,13 @@ import '@shared/container';
 
 const app = express();
 
-app.use(cors({ origin: 'https://samasc.cloud' }));
+const corsOptions = {
+  origin: 'https://samasc.cloud',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 // app.use(rateLimiter);
