@@ -17,7 +17,7 @@ import '@shared/container';
 const app = express();
 
 const corsOptions = {
-  origin: 'https://samasc.cloud',
+  origin: 'https://samasc.site',
   optionsSuccessStatus: 200,
 };
 
